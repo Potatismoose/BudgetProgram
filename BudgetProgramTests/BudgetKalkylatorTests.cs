@@ -15,5 +15,10 @@ namespace BudgetProgramTests
         {
             Assert.Pass();
         }
+        [Test]
+        public void Test3() // testar inte alls
+        {
+            Assert.Pass();
+        }
     }
 }
