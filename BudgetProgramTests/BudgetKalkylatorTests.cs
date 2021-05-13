@@ -11,11 +11,9 @@ namespace BudgetProgramTests
         }
 
         [Test]
-        public void Test1() 
+        public void Test1()
         {
             Assert.Pass();
         }
-
-
     }
 }
