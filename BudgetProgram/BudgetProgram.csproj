@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BudgetLists\" />
-    <Folder Include="Mockdata\" />
+    <Compile Remove="Mockdata\**" />
+    <EmbeddedResource Remove="Mockdata\**" />
+    <None Remove="Mockdata\**" />
   </ItemGroup>
 
 </Project>
