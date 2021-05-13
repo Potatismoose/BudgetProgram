@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BudgetProgram.BudgetLists
 {
     public class Expense
     {
-        public Dictionary<string, float> expenses;
+        public Dictionary<string, float> HouseholdExpenses { get; set; }
 
-        public Expense()
+        public Expense(Dictionary<string, float> expenses)
         {
+            HouseholdExpenses = expenses;
         }
     }
 }

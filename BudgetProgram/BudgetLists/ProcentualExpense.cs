@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BudgetProgram.BudgetLists
 {
     public class ProcentualExpense
     {
-        public Dictionary<string, float> procentualExpenses;
+        public Dictionary<string, float> ProcentualExpenses { get; set; }
     }
 }
