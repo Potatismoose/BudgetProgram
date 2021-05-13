@@ -2,7 +2,7 @@
 
 namespace BudgetProgram
 {
-    public class BudgetKalkylator
+    public class BudgetCalculator
     {
     }
 }

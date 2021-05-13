@@ -1,4 +1,5 @@
 using BudgetProgram.BudgetLists;
+using BudgetProgram.
 using NUnit.Framework;
 using System.Collections.Generic;
 
@@ -29,8 +30,8 @@ namespace BudgetProgramTests
         [Test]
         public void Test1()
         {
-
-            Assert.Pass();
+            var calc = new bud
+            Assert.That(test);
         }
     }
 }
