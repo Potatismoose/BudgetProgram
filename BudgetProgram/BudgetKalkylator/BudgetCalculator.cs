@@ -1,8 +1,7 @@
-﻿using BudgetProgram.BudgetLists;
-using System.Linq;
-
-namespace BudgetProgram
+﻿namespace BudgetProgram
 {
+    using System.Linq;
+    using BudgetLists;
     public class BudgetCalculator
     {
         public decimal CalculateRest(Income incomes, Expense expenses)
@@ -11,13 +10,41 @@ namespace BudgetProgram
             {
                 return 0;
             }
-            var CalculatedSum = incomes.HouseholdIncome.Sum(x => x.Value);
-            foreach (var expense in expenses.HouseholdExpenses.Values.Where(expense => CalculatedSum - expense > 0))
+            var calculatedSum = incomes.HouseholdIncome.Sum(x => x.Value);
+            foreach (var expense in expenses.HouseholdExpenses.Values.Where(expense => calculatedSum - expense > 0))
             {
-                CalculatedSum -= expense;
+                calculatedSum -= expense;
             }
 
-            return CalculatedSum;
+            return calculatedSum;
+        }
+
+        /// <summary>
+        /// Takes balance and deducts percentage expenses.
+        /// If total percentage surpasses 100% that deduction is not made.
+        /// </summary>
+        /// <param name="balance"></param>
+        /// <param name="percentageExpenses"></param>
+        /// <returns>the new changed balance.</returns>
+        public decimal DeductPercentageExpenses(decimal balance, PercentageExpense percentageExpenses)
+        {
+            if (percentageExpenses == null) return balance;
+
+            var tempBalance = balance;
+            var totalPercentage = 0.0M;
+            foreach (var (_, value) in percentageExpenses.PercentageExpenses)
+            {
+                if (totalPercentage + value <= 1)
+                {
+                    totalPercentage += value;
+                    tempBalance -= balance * value;
+                }
+                else
+                {
+                    // TODO: Log error message
+                }
+            }
+            return tempBalance;
         }
     }
 }
