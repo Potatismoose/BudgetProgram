@@ -4,9 +4,9 @@ namespace BudgetProgram.BudgetLists
 {
     public class Expense
     {
-        public Dictionary<string, float> HouseholdExpenses { get; set; }
+        public Dictionary<string, decimal> HouseholdExpenses { get; set; }
 
-        public Expense(Dictionary<string, float> expenses)
+        public Expense(Dictionary<string, decimal> expenses)
         {
             HouseholdExpenses = expenses;
         }

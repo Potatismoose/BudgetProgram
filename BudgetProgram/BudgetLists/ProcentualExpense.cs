@@ -4,6 +4,6 @@ namespace BudgetProgram.BudgetLists
 {
     public class ProcentualExpense
     {
-        public Dictionary<string, float> ProcentualExpenses { get; set; }
+        public Dictionary<string, decimal> ProcentualExpenses { get; set; }
     }
 }
