@@ -5,12 +5,13 @@ namespace BudgetProgram
 {
     public class BudgetCalculator
     {
-        public float CalculateRest(Income incomes, Expense expenses)
+        public decimal CalculateRest(Income incomes, Expense expenses, ProcentualExpense procentualExpenses)
         {
             if (incomes == null || expenses == null)
             {
                 return 0;
             }
+
             var CalculatedSum = incomes.HouseholdIncome.Sum(x => x.Value);
             foreach (var expense in expenses.HouseholdExpenses.Values.Where(expense => CalculatedSum - expense > 0))
             {
