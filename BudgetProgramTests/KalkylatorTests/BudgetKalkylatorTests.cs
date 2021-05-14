@@ -45,5 +45,11 @@ namespace BudgetProgramTests
             var result = calc.CalculateRest(income, expenses);
             Assert.That(result, Is.EqualTo(15444));
         }
+
+        [Test]
+        public void CalculateRest_NullDictionary_ReturnsZero()
+        {
+           //TODO: Implement this.
+        }
     }
 }
