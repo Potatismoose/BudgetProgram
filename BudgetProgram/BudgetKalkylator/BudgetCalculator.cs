@@ -7,7 +7,7 @@ namespace BudgetProgram
     {
         public float CalculateRest(Income incomes, Expense expenses)
         {
-            if (incomes == null)
+            if (incomes == null || expenses == null)
             {
                 return 0;
             }
