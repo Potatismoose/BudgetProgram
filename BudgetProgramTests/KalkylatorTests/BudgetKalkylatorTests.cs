@@ -36,6 +36,7 @@ namespace BudgetProgramTests
         public void TearDown()
         {
             income = null;
+            expenses = null;
         }
 
         [Test]
