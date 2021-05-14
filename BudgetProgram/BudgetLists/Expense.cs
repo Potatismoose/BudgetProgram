@@ -17,7 +17,7 @@ namespace BudgetProgram.BudgetLists
             {
                 total += item;
             }
-            return total; //förändring
+            return total; //förändri
         }
 
     }
