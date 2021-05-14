@@ -10,15 +10,5 @@ namespace BudgetProgram.BudgetLists
         {
             HouseholdExpenses = expenses;
         }
-        public decimal Totalexpences(Dictionary<string, decimal> expenses)
-        {
-            decimal total = 0;
-            foreach (var item in expenses.Values)
-            {
-                total += item;
-            }
-            return total; //förändri
-        }
-
     }
 }
