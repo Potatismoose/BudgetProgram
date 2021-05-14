@@ -1,4 +1,4 @@
-using BudgetProgram;
+ï»¿using BudgetProgram;
 using BudgetProgram.BudgetLists;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -14,16 +14,16 @@ namespace BudgetProgramTests
         public void Setup()
         {
             income = new Income(
-               new Dictionary<string, float>()
+               new Dictionary<string, decimal>()
                {
-                    { "Lön", 22370 } ,
+                    { "Lï¿½n", 22370 } ,
                     { "Studiebidrag", 4370 } ,
                     { "Styrelseuppdrag", 1850 }
-                   //Totalen är 28590
+                   //Totalen ï¿½r 28590
                });
 
             expenses = new Expense(
-               new Dictionary<string, float>()
+               new Dictionary<string, decimal>()
                {
                     { "Mat", 5500 } ,
                     { "Hyra", 6749 } ,
@@ -45,6 +45,12 @@ namespace BudgetProgramTests
             var calc = new BudgetCalculator();
             var result = calc.CalculateRest(income, expenses);
             Assert.That(result, Is.EqualTo(15444));
+        }
+
+        [Test]
+        public void CalculateRest_NullDictionary_ReturnsZero()
+        {
+            //TODO: Implement this.
         }
     }
 }

@@ -5,7 +5,7 @@ namespace BudgetProgram
 {
     public class BudgetCalculator
     {
-        public float CalculateRest(Income incomes, Expense expenses)
+        public decimal CalculateRest(Income incomes, Expense expenses)
         {
             if (incomes == null)
             {
