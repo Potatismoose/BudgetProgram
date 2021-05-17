@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BudgetProgram.BudgetLists;
 
 namespace BudgetProgram.HelperMethods
 {
-    class ExpenseHelper
+    public class ExpenseHelper
     {
         public decimal TotalExpences(Dictionary<string, decimal> expenses)
         {
@@ -14,6 +15,18 @@ namespace BudgetProgram.HelperMethods
                 total += item;
             }
             return total;
+        }
+
+        /// <summary>
+        /// Gets the absolute value for every value in the dictionary.
+        /// </summary>
+        /// <param name="expenses"></param>
+        public static void GetAbsoluteValue(PercentageExpense expenses)
+        {
+            foreach (var (key, value) in expenses.PercentageExpenses)
+            {
+                expenses.PercentageExpenses[key] = Math.Abs(value);
+            }
         }
     }
 }

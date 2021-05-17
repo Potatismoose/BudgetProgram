@@ -1,6 +1,7 @@
 ﻿namespace BudgetProgram
 {
     using System.Linq;
+    using HelperMethods;
     using BudgetLists;
     public class BudgetCalculator
     {
@@ -29,10 +30,11 @@
         public decimal DeductPercentageExpenses(decimal balance, PercentageExpense percentageExpenses)
         {
             if (percentageExpenses == null) return balance;
-
             var tempBalance = balance;
             var totalPercentage = 0.0M;
-            foreach (var (_, value) in percentageExpenses.PercentageExpenses)
+            ExpenseHelper.GetAbsoluteValue(percentageExpenses);
+
+            foreach (var (key, value) in percentageExpenses.PercentageExpenses)
             {
                 if (totalPercentage + value <= 1)
                 {
@@ -44,6 +46,7 @@
                     // TODO: Log error message
                 }
             }
+
             return tempBalance;
         }
     }

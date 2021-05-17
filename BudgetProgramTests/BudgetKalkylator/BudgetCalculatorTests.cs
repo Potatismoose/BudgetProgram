@@ -18,12 +18,13 @@
                 PercentageExpenses = new Dictionary<string, decimal>
                 {
                     { "Spara", 0.1M },
-                    { "Oförutsedda utgifter", 0.25M }
+                    { "Oförutsedda utgifter", 0.25M },
+                    { "Mat", -0.5M }
                 }
             };
 
             var actual = calc.DeductPercentageExpenses(balance, percentageExpenses);
-            const int expected = 13000;
+            const int expected = 3000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
 
