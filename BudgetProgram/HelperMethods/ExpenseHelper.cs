@@ -21,11 +21,11 @@ namespace BudgetProgram.HelperMethods
         /// Gets the absolute value for every value in the dictionary.
         /// </summary>
         /// <param name="expenses"></param>
-        public static void GetAbsoluteValue(PercentageExpense expenses)
+        public static void GetAbsoluteValue(Dictionary<string, decimal> expenses)
         {
-            foreach (var (key, value) in expenses.PercentageExpenses)
+            foreach (var (key, value) in expenses)
             {
-                expenses.PercentageExpenses[key] = Math.Abs(value);
+                expenses[key] = Math.Abs(value);
             }
         }
     }

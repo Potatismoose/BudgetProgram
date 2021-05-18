@@ -6,7 +6,7 @@
     using BudgetLists;
 
     [TestFixture()]
-    public class BudgetCalculatorTests
+    public class DeductPercentageExpensesTests
     {
         [Test()]
         public void DeductPercentageExpensesTest_DeductableExpenses_ReturnsBalance()

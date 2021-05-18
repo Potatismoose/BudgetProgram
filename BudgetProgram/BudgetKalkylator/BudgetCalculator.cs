@@ -32,14 +32,14 @@
             if (percentageExpenses == null) return balance;
             var tempBalance = balance;
             var totalPercentage = 0.0M;
-            ExpenseHelper.GetAbsoluteValue(percentageExpenses);
+            ExpenseHelper.GetAbsoluteValue(percentageExpenses.PercentageExpenses);
 
             foreach (var (key, value) in percentageExpenses.PercentageExpenses)
             {
                 if (totalPercentage + value <= 1)
                 {
                     totalPercentage += value;
-                    tempBalance -= balance * value;
+                    balance -= tempBalance * value;
                 }
                 else
                 {
@@ -47,7 +47,7 @@
                 }
             }
 
-            return tempBalance;
+            return balance;
         }
     }
 }

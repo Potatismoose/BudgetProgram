@@ -21,7 +21,7 @@ namespace BudgetProgram.HelperMethods.Tests
                     { "Dator", 0.25M }
                 }
             };
-            ExpenseHelper.GetAbsoluteValue(percentageExpenses);
+            ExpenseHelper.GetAbsoluteValue(percentageExpenses.PercentageExpenses);
             var actual = percentageExpenses.PercentageExpenses.Values.Sum();
             const decimal expected = 0.6M;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
