@@ -1,6 +1,7 @@
-﻿namespace BudgetProgram.HelperMethods.Tests
+﻿namespace BudgetProgramTests.HelperMethods
 {
-    using BudgetLists;
+    using BudgetProgram.BudgetLists;
+    using BudgetProgram.HelperMethods;
     using NUnit.Framework;
     using System.Collections.Generic;
     using System.Linq;
@@ -27,7 +28,7 @@
             };
 
             ExpenseHelper.GetAbsoluteValue(p.HouseholdPercentageExpenses);
-            var actual = p.HouseholdPercentageExpenses.Values.Sum();
+            decimal actual = p.HouseholdPercentageExpenses.Values.Sum();
             const decimal expected = 0.6M;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
@@ -41,7 +42,7 @@
             };
 
             p.HouseholdPercentageExpenses = ExpenseHelper.SetDefaultKey(p.HouseholdPercentageExpenses);
-            var actual = p.HouseholdPercentageExpenses.ElementAt(0);
+            KeyValuePair<string, decimal> actual = p.HouseholdPercentageExpenses.ElementAt(0);
             KeyValuePair<string, decimal> expected = new("Ospecificerad utgift 1", 0.1M);
             Assert.That(actual, Is.EqualTo(expected));
         }
@@ -50,8 +51,7 @@
         [TestCase(false, 0.8, 0.25)]
         public void PercentageDoesNotExceed100Test(bool expected, decimal totalPercentage, decimal value)
         {
-            var actual = ExpenseHelper.TotalPercentageDoesNotExceed100(totalPercentage, value);
-
+            bool actual = ExpenseHelper.TotalPercentageDoesNotExceed100(totalPercentage, value);
             Assert.That(actual, Is.EqualTo(expected));
         }
     }
