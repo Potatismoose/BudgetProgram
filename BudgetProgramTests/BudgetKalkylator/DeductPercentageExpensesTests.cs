@@ -1,9 +1,11 @@
-﻿namespace BudgetProgram.Tests
+﻿using BudgetProgram.BudgetKalkylator;
+
+namespace BudgetProgramTests.BudgetKalkylator
 {
-    using System.Collections.Generic;
-    using NUnit.Framework;
     using BudgetProgram;
-    using BudgetLists;
+    using BudgetProgram.BudgetLists;
+    using NUnit.Framework;
+    using System.Collections.Generic;
 
     [TestFixture()]
     public class DeductPercentageExpensesTests
@@ -21,13 +23,13 @@
         {
             var calc = new BudgetCalculator();
             const decimal balance = 20000;
-            p.PercentageExpenses = new Dictionary<string, decimal>
+            p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
             {
                 { "Spara", 0.1M },
                 { "Dator", 0.25M }
             };
 
-            var actual = calc.DeductPercentageExpenses(balance, p);
+            decimal actual = calc.DeductPercentageExpenses(balance, p);
             const int expected = 13000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
@@ -37,12 +39,12 @@
         {
             var calc = new BudgetCalculator();
             const decimal balance = 20000;
-            p.PercentageExpenses = new Dictionary<string, decimal>
+            p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
             {
                 {"Oförutsedda utgifter", 1.10M}
             };
 
-            var actual = calc.DeductPercentageExpenses(balance, p);
+            decimal actual = calc.DeductPercentageExpenses(balance, p);
             const int expected = 20000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
@@ -52,7 +54,7 @@
         {
             var calc = new BudgetCalculator();
             const decimal balance = 20000;
-            var actual = calc.DeductPercentageExpenses(balance, null);
+            decimal actual = calc.DeductPercentageExpenses(balance, null);
             const int expected = 20000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
@@ -62,8 +64,8 @@
         {
             var calc = new BudgetCalculator();
             const decimal balance = 20000;
-            p.PercentageExpenses = new Dictionary<string, decimal>();
-            var actual = calc.DeductPercentageExpenses(balance, p);
+            p.HouseholdPercentageExpenses = new Dictionary<string, decimal>();
+            decimal actual = calc.DeductPercentageExpenses(balance, p);
             const int expected = 20000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }

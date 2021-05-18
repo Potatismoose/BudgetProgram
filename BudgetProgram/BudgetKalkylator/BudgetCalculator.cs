@@ -1,8 +1,9 @@
-﻿namespace BudgetProgram
+﻿namespace BudgetProgram.BudgetKalkylator
 {
-    using System.Linq;
     using BudgetLists;
+    using System.Linq;
     using static HelperMethods.ExpenseHelper;
+
     public class BudgetCalculator
     {
         public decimal CalculateRest(Income incomes, Expense expenses)
@@ -11,8 +12,8 @@
             {
                 return 0;
             }
-            var calculatedSum = incomes.HouseholdIncome.Sum(x => x.Value);
-            foreach (var expense in expenses.HouseholdExpenses.Values.Where(expense => calculatedSum - expense > 0))
+            decimal calculatedSum = incomes.HouseholdIncome.Sum(x => x.Value);
+            foreach (decimal expense in expenses.HouseholdExpenses.Values.Where(expense => calculatedSum - expense > 0))
             {
                 calculatedSum -= expense;
             }
@@ -30,12 +31,12 @@
         public decimal DeductPercentageExpenses(decimal balance, PercentageExpense p)
         {
             if (p == null) return balance;
-            var tempBalance = balance;
+            decimal tempBalance = balance;
             var totalPercentage = 0.0M;
-            p.PercentageExpenses = SetDefaultKey(p.PercentageExpenses);
-            GetAbsoluteValue(p.PercentageExpenses);
+            p.HouseholdPercentageExpenses = SetDefaultKey(p.HouseholdPercentageExpenses);
+            GetAbsoluteValue(p.HouseholdPercentageExpenses);
 
-            foreach (var (key, value) in p.PercentageExpenses)
+            foreach ((string key, decimal value) in p.HouseholdPercentageExpenses)
             {
                 if (TotalPercentageDoesNotExceed100(totalPercentage, value))
                 {
@@ -49,6 +50,27 @@
             }
 
             return balance;
+        }
+
+        /// <summary>
+        /// Tar emot inkomster, utgifter och procentuella
+        /// utgifter. Kollar så att inkomsterna inte är null
+        /// och sedan räknas saldot som blir över
+        /// ut efter att alla möjliga avdrag är gjorda.
+        /// </summary>
+        /// <param name="incomes">Ett lexikon över inkomsterna.</param>
+        /// <param name="expenses">Ett lexikon över utgifterna.</param>
+        /// <param name="percentageExpenses">Ett lexikon över de procentuella utgifterna.</param>
+        /// <returns>Saldot efter att alla möjliga avdrag är gjorda.</returns>
+        public decimal CalculateBudget(
+            Income incomes,
+            Expense expenses,
+            PercentageExpense percentageExpenses)
+        {
+            if (incomes == null) return 0;
+            decimal balance = incomes.HouseholdIncome.Sum(i => i.Value);
+            // TODO: balance = DeductExpenses(balance, expenses);
+            return DeductPercentageExpenses(balance, percentageExpenses);
         }
     }
 }

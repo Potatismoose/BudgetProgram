@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BudgetProgram.BudgetLists
+﻿namespace BudgetProgram.BudgetLists
 {
+    using System.Collections.Generic;
+
     public class PercentageExpense
     {
-        public Dictionary<string, decimal> PercentageExpenses { get; set; }
+        public Dictionary<string, decimal> HouseholdPercentageExpenses { get; set; }
     }
 }

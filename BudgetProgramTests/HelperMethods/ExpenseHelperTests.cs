@@ -1,12 +1,10 @@
-﻿
-using System;
-using System.Linq;
-
-namespace BudgetProgram.HelperMethods.Tests
+﻿namespace BudgetProgram.HelperMethods.Tests
 {
-    using System.Collections.Generic;
     using BudgetLists;
     using NUnit.Framework;
+    using System.Collections.Generic;
+    using System.Linq;
+
     [TestFixture()]
     public class ExpenseHelperTests
     {
@@ -21,15 +19,15 @@ namespace BudgetProgram.HelperMethods.Tests
         [Test()]
         public void GetAbsoluteValueTest_NegativeProcentage_ReturnsAbsoluteValue()
         {
-            p.PercentageExpenses = new Dictionary<string, decimal>
+            p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
             {
                 {"Spara", -0.1M},
                 {"Oförutsedda utgifter", -0.25M},
                 {"Dator", -0.25M}
             };
 
-            ExpenseHelper.GetAbsoluteValue(p.PercentageExpenses);
-            var actual = p.PercentageExpenses.Values.Sum();
+            ExpenseHelper.GetAbsoluteValue(p.HouseholdPercentageExpenses);
+            var actual = p.HouseholdPercentageExpenses.Values.Sum();
             const decimal expected = 0.6M;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
@@ -37,13 +35,13 @@ namespace BudgetProgram.HelperMethods.Tests
         [Test]
         public void SetDefaultKeyTest_EmptyKey_ReturnsDefaultKey()
         {
-            p.PercentageExpenses = new Dictionary<string, decimal>
+            p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
             {
                 { "", 0.1M },
             };
 
-            p.PercentageExpenses = ExpenseHelper.SetDefaultKey(p.PercentageExpenses);
-            var actual = p.PercentageExpenses.ElementAt(0);
+            p.HouseholdPercentageExpenses = ExpenseHelper.SetDefaultKey(p.HouseholdPercentageExpenses);
+            var actual = p.HouseholdPercentageExpenses.ElementAt(0);
             KeyValuePair<string, decimal> expected = new("Ospecificerad utgift 1", 0.1M);
             Assert.That(actual, Is.EqualTo(expected));
         }
