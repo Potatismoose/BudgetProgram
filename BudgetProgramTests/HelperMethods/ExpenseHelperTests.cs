@@ -9,26 +9,26 @@
     [TestFixture()]
     public class ExpenseHelperTests
     {
-        public PercentageExpense p;
+        private PercentageExpense _p;
 
         [SetUp]
         public void SetUp()
         {
-            p = new PercentageExpense();
+            _p = new PercentageExpense();
         }
 
         [Test()]
         public void GetAbsoluteValueTest_NegativeProcentage_ReturnsAbsoluteValue()
         {
-            p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
+            _p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
             {
                 {"Spara", -0.1M},
                 {"Oförutsedda utgifter", -0.25M},
                 {"Dator", -0.25M}
             };
 
-            ExpenseHelper.GetAbsoluteValue(p.HouseholdPercentageExpenses);
-            decimal actual = p.HouseholdPercentageExpenses.Values.Sum();
+            ExpenseHelper.GetAbsoluteValue(_p.HouseholdPercentageExpenses);
+            decimal actual = _p.HouseholdPercentageExpenses.Values.Sum();
             const decimal expected = 0.6M;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
@@ -36,13 +36,13 @@
         [Test]
         public void SetDefaultKeyTest_EmptyKey_ReturnsDefaultKey()
         {
-            p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
+            _p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
             {
                 { "", 0.1M },
             };
 
-            p.HouseholdPercentageExpenses = ExpenseHelper.SetDefaultKey(p.HouseholdPercentageExpenses);
-            KeyValuePair<string, decimal> actual = p.HouseholdPercentageExpenses.ElementAt(0);
+            _p.HouseholdPercentageExpenses = ExpenseHelper.SetDefaultKey(_p.HouseholdPercentageExpenses);
+            KeyValuePair<string, decimal> actual = _p.HouseholdPercentageExpenses.ElementAt(0);
             KeyValuePair<string, decimal> expected = new("Ospecificerad utgift 1", 0.1M);
             Assert.That(actual, Is.EqualTo(expected));
         }
