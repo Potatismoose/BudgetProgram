@@ -1,8 +1,8 @@
 ﻿namespace BudgetProgram
 {
     using System.Linq;
-    using HelperMethods;
     using BudgetLists;
+    using static HelperMethods.ExpenseHelper;
     public class BudgetCalculator
     {
         public decimal CalculateRest(Income incomes, Expense expenses)
@@ -25,18 +25,19 @@
         /// If total percentage surpasses 100% that deduction is not made.
         /// </summary>
         /// <param name="balance"></param>
-        /// <param name="percentageExpenses"></param>
+        /// <param name="p"></param>
         /// <returns>the new changed balance.</returns>
-        public decimal DeductPercentageExpenses(decimal balance, PercentageExpense percentageExpenses)
+        public decimal DeductPercentageExpenses(decimal balance, PercentageExpense p)
         {
-            if (percentageExpenses == null) return balance;
+            if (p == null) return balance;
             var tempBalance = balance;
             var totalPercentage = 0.0M;
-            ExpenseHelper.GetAbsoluteValue(percentageExpenses.PercentageExpenses);
+            p.PercentageExpenses = SetDefaultKey(p.PercentageExpenses);
+            GetAbsoluteValue(p.PercentageExpenses);
 
-            foreach (var (key, value) in percentageExpenses.PercentageExpenses)
+            foreach (var (key, value) in p.PercentageExpenses)
             {
-                if (totalPercentage + value <= 1)
+                if (TotalPercentageDoesNotExceed100(totalPercentage, value))
                 {
                     totalPercentage += value;
                     balance -= tempBalance * value;
