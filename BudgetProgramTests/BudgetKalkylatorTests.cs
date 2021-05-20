@@ -1,5 +1,9 @@
 ﻿namespace BudgetProgramTests
 {
+    using BudgetProgram.BudgetKalkylator;
+    using BudgetProgram.BudgetLists;
+    using NUnit.Framework;
+    using System.Collections.Generic;
     using BudgetProgram;
     using BudgetProgram.BudgetLists;
     using NUnit.Framework;

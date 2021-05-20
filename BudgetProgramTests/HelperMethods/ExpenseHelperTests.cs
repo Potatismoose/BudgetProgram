@@ -7,26 +7,26 @@
     using System.Linq;
     public class ExpenseHelperTests
     {
-        public PercentageExpense p;
+        private PercentageExpense _p;
 
         [SetUp]
         public void SetUp()
         {
-            p = new PercentageExpense();
+            _p = new PercentageExpense();
         }
 
         [Test]
         public void GetAbsoluteValueTest_NegativeProcentage_ReturnsAbsoluteValue()
         {
-            p.PercentageExpenses = new Dictionary<string, decimal>
+            _p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
             {
                 {"Spara", -0.1M},
                 {"Oförutsedda utgifter", -0.25M},
                 {"Dator", -0.25M}
             };
 
-            ExpenseHelper.GetAbsoluteValue(p.PercentageExpenses);
-            decimal actual = p.PercentageExpenses.Values.Sum();
+            ExpenseHelper.GetAbsoluteValue(_p.HouseholdPercentageExpenses);
+            decimal actual = _p.HouseholdPercentageExpenses.Values.Sum();
             const decimal expected = 0.6M;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
@@ -34,22 +34,22 @@
         [Test]
         public void SetDefaultKeyTest_EmptyKey_ReturnsDefaultKey()
         {
-            p.PercentageExpenses = new Dictionary<string, decimal>
+            _p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
             {
                 { "", 0.1M },
             };
 
-            p.PercentageExpenses = ExpenseHelper.SetDefaultKey(p.PercentageExpenses);
-            var actual = p.PercentageExpenses.ElementAt(0);
+            _p.HouseholdPercentageExpenses = ExpenseHelper.SetDefaultKey(_p.HouseholdPercentageExpenses);
+            KeyValuePair<string, decimal> actual = _p.HouseholdPercentageExpenses.ElementAt(0);
             KeyValuePair<string, decimal> expected = new("Ospecificerad utgift 1", 0.1M);
             Assert.That(actual, Is.EqualTo(expected));
         }
 
         [TestCase(true, 0, 0.25)]
         [TestCase(false, 0.8, 0.25)]
-        public void PercentageDoesNotExceed100Test(bool expected, decimal totalPercentage, decimal value)
+        public void PercentageDoesNotExceed100Test(bool expected, decimal currentPercentage, decimal percentage)
         {
-            bool actual = ExpenseHelper.TotalPercentageDoesNotExceed100(totalPercentage, value);
+            bool actual = ExpenseHelper.TotalPercentageDoesNotExceed100(currentPercentage, percentage);
             Assert.That(actual, Is.EqualTo(expected));
         }
     }
