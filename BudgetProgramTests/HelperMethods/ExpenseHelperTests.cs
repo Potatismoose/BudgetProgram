@@ -16,19 +16,36 @@
         }
 
         [Test]
+        public void GetAbsoluteValueTest_NullInput()
+        {
+            var actual = ExpenseHelper.GetAbsoluteValue(null);
+            var expected = new Dictionary<string, decimal>();
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
         public void GetAbsoluteValueTest_NegativeProcentage_ReturnsAbsoluteValue()
         {
             _p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
             {
                 {"Spara", -0.1M},
                 {"Oförutsedda utgifter", -0.25M},
-                {"Dator", -0.25M}
+                {"Dator", -0.25M},
             };
 
-            ExpenseHelper.GetAbsoluteValue(_p.HouseholdPercentageExpenses);
+            _p.HouseholdPercentageExpenses = ExpenseHelper.
+                GetAbsoluteValue(_p.HouseholdPercentageExpenses);
             decimal actual = _p.HouseholdPercentageExpenses.Values.Sum();
             const decimal expected = 0.6M;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
+        }
+
+        [Test]
+        public void SetDefaultKeyTest_NullInput()
+        {
+            var actual = ExpenseHelper.SetDefaultKey(null);
+            var expected = new Dictionary<string, decimal>();
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
         [Test]
