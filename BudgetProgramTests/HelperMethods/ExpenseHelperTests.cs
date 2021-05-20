@@ -40,13 +40,15 @@
             };
 
             _p.HouseholdPercentageExpenses = ExpenseHelper.SetDefaultKey(_p.HouseholdPercentageExpenses);
-            KeyValuePair<string, decimal> actual = _p.HouseholdPercentageExpenses.ElementAt(0);
+            var actual = _p.HouseholdPercentageExpenses.ElementAt(0);
             KeyValuePair<string, decimal> expected = new("Ospecificerad utgift 1", 0.1M);
             Assert.That(actual, Is.EqualTo(expected));
         }
 
         [TestCase(true, 0, 0.25)]
         [TestCase(false, 0.8, 0.25)]
+        [TestCase(false, -0.8, 0.25)]
+        [TestCase(false, -0.8, 0.25)]
         public void PercentageDoesNotExceed100Test(bool expected, decimal currentPercentage, decimal percentage)
         {
             bool actual = ExpenseHelper.TotalPercentageDoesNotExceed100(currentPercentage, percentage);

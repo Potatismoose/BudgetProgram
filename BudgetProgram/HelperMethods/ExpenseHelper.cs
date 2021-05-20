@@ -54,7 +54,7 @@
         /// <returns>Sant om den totala procenten inte kommer överstiga 100%, annars falskt.</returns>
         public static bool TotalPercentageDoesNotExceed100(decimal totalProcentage, decimal value)
         {
-            return totalProcentage + value <= 1;
+            return Math.Abs(totalProcentage) + Math.Abs(value) <= 1;
         }
     }
 }

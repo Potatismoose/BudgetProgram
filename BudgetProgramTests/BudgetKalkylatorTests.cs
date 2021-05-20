@@ -15,10 +15,10 @@
             income = new Income(
                new Dictionary<string, decimal>()
                {
-                    { "L�n", 22370 } ,
+                    { "Lön", 22370 } ,
                     { "Studiebidrag", 4370 } ,
                     { "Styrelseuppdrag", 1850 }
-                   //Totalen �r 28590
+                   //Totalen är 28590
                });
 
             expenses = new Expense(
@@ -42,7 +42,7 @@
         public void CalculateRest_PostitiveIncomeAndPositiveExpenses_ResultOfIncomeMinusExpenses()
         {
             var calc = new BudgetCalculator();
-            var result = calc.CalculateRest(income, expenses);
+            decimal result = calc.CalculateRest(income, expenses);
             Assert.That(result, Is.EqualTo(15444));
         }
 
