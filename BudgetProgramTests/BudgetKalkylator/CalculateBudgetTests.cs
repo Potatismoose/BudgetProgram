@@ -40,7 +40,7 @@
         public void CalculateBudgetTest_ValidDictionaries_ReturnsBalance()
         {
             var incomes = new Income(_householdIncomes);
-            var expenses = new Expense(_householdExpenses);
+            var expenses = new Expense { };
             decimal actual = _calc.CalculateBudget(incomes, expenses, _percentageExpenses);
             const decimal expected = 18000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.000005));
