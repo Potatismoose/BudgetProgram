@@ -43,7 +43,9 @@
             if (expenses == null) return dictionary;
             foreach ((string key, decimal value) in expenses)
             {
-                dictionary.Add(string.IsNullOrEmpty(key) ? $"Ospecificerad utgift {counter++}" : key, value);
+                dictionary.Add(string.IsNullOrEmpty(key) 
+                               || string.IsNullOrWhiteSpace(key) 
+                    ? $"Ospecificerad utgift {counter++}" : key, value);
             }
 
             return dictionary;

@@ -48,12 +48,13 @@
             Assert.That(actual, Is.EqualTo(expected));
         }
 
-        [Test]
-        public void SetDefaultKeyTest_EmptyKey_ReturnsDefaultKey()
+        [TestCase("")]
+        [TestCase("   ")]
+        public void SetDefaultKeyTest_EmptyKey_ReturnsDefaultKey(string key)
         {
             _p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
             {
-                { "", 0.1M },
+                { key, 0.1M },
             };
 
             _p.HouseholdPercentageExpenses = ExpenseHelper.SetDefaultKey(_p.HouseholdPercentageExpenses);
