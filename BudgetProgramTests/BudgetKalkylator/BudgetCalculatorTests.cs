@@ -35,9 +35,11 @@ namespace BudgetProgram.Tests
                new Dictionary<string, decimal>()
                {
                     { "Mat", 5500 } ,
-                    { "Hyra", 6749 } ,
-                    { "El", 897 }
-                   //Summa 13146
+                    { "Hyra", -6749 } ,
+                    { "El", 897 },
+                    { "", 666 },
+                    { " ", 668 }
+                   //Summa 14480
                });
 
             ProcentualExpenses = new ProcentualExpense(
@@ -61,7 +63,7 @@ namespace BudgetProgram.Tests
         [Test]
         public void CalculateRest_PostitiveIncomeAndPositiveExpenses_ResultOfIncomeMinusExpenses()
         {
-            const decimal expected = 15444;
+            const decimal expected = 14110;
             var result = calc.CalculateRest(income, expenses, ProcentualExpenses);
             Assert.That(result, Is.EqualTo(expected));
         }
