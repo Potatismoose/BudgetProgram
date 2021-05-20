@@ -3,7 +3,6 @@
     using BudgetLists;
     using System.Linq;
     using static HelperMethods.ExpenseHelper;
-
     public class BudgetCalculator
     {
         public decimal CalculateRest(Income incomes, Expense expenses)

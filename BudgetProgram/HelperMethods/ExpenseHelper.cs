@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     public class ExpenseHelper
     {
         public decimal TotalExpences(Dictionary<string, decimal> expenses)

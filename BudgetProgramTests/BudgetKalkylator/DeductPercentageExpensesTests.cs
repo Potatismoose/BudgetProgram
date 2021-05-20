@@ -4,8 +4,6 @@
     using BudgetProgram.BudgetLists;
     using NUnit.Framework;
     using System.Collections.Generic;
-    using BudgetProgram;
-    using BudgetLists;
     public class DeductPercentageExpensesTests
     {
         private PercentageExpense _p;
