@@ -39,7 +39,7 @@
             const decimal balance = 20000;
             _p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
             {
-                {"Oförutsedda utgifter", 1.10M}
+                { "Oförutsedda utgifter", 1.10M }
             };
 
             decimal actual = calc.DeductPercentageExpenses(balance, _p);

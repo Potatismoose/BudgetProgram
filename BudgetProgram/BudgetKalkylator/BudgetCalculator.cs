@@ -36,7 +36,7 @@
             p.HouseholdPercentageExpenses = SetDefaultKey(p.HouseholdPercentageExpenses);
             GetAbsoluteValue(p.HouseholdPercentageExpenses);
 
-            foreach ((string key, decimal value) in p.HouseholdPercentageExpenses)
+            foreach ((string _, decimal value) in p.HouseholdPercentageExpenses)
             {
                 if (TotalPercentageDoesNotExceed100(totalPercentage, value))
                 {
