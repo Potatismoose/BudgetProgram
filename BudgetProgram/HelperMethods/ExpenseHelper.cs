@@ -18,12 +18,16 @@
         /// Ser till att varje post i lexikonet har sitt absoulta värde.
         /// </summary>
         /// <param name="expenses">Utgiften som ska kontrolleras.</param>
-        public static void GetAbsoluteValue(Dictionary<string, decimal> expenses)
+        public static Dictionary<string, decimal> GetAbsoluteValue(Dictionary<string, decimal> expenses)
         {
+            var dictionary = new Dictionary<string, decimal>();
+            if (expenses == null) return dictionary;
             foreach ((string key, decimal value) in expenses)
             {
-                expenses[key] = Math.Abs(value);
+                dictionary.Add(key, Math.Abs(value));
             }
+
+            return dictionary;
         }
 
         /// <summary>
@@ -36,6 +40,7 @@
         {
             var counter = 1;
             var dictionary = new Dictionary<string, decimal>();
+            if (expenses == null) return dictionary;
             foreach ((string key, decimal value) in expenses)
             {
                 dictionary.Add(string.IsNullOrEmpty(key) ? $"Ospecificerad utgift {counter++}" : key, value);
