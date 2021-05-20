@@ -10,7 +10,7 @@
     {
         private BudgetCalculator _calc;
         private Dictionary<string, decimal> _householdIncomes;
-        private Dictionary<string, decimal> _householdExpenses;
+        private Expense _expenses;
         private PercentageExpense _percentageExpenses;
 
         [SetUp]
@@ -22,9 +22,12 @@
                 { "Lön", 20000 }
             };
 
-            _householdExpenses = new Dictionary<string, decimal>
+            _expenses = new Expense
             {
-                { "Hyra", 7800 }
+                HouseholdExpenses = new Dictionary<string, decimal>
+                {
+                    { "Hyra", 7800 }
+                }
             };
 
             _percentageExpenses = new PercentageExpense
@@ -40,8 +43,7 @@
         public void CalculateBudgetTest_ValidDictionaries_ReturnsBalance()
         {
             var incomes = new Income(_householdIncomes);
-            var expenses = new Expense { };
-            decimal actual = _calc.CalculateBudget(incomes, expenses, _percentageExpenses);
+            decimal actual = _calc.CalculateBudget(incomes, _expenses, _percentageExpenses);
             const decimal expected = 18000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.000005));
         }
@@ -49,8 +51,7 @@
         [Test]
         public void CalculateBudgetTest_NullIncomes_ReturnsZero()
         {
-            var expenses = new Expense(_householdExpenses);
-            decimal actual = _calc.CalculateBudget(null, expenses, _percentageExpenses);
+            decimal actual = _calc.CalculateBudget(null, _expenses, _percentageExpenses);
             Assert.That(actual, Is.Zero);
         }
 
@@ -58,8 +59,7 @@
         public void CalculateBudgetTest_NoIncomes_ReturnsZero()
         {
             var incomes = new Income(new Dictionary<string, decimal>());
-            var expenses = new Expense(_householdExpenses);
-            decimal actual = _calc.CalculateBudget(incomes, expenses, _percentageExpenses);
+            decimal actual = _calc.CalculateBudget(incomes, _expenses, _percentageExpenses);
             Assert.That(actual, Is.Zero);
         }
     }
