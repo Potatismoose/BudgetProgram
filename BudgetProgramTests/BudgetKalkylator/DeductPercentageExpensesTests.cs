@@ -4,8 +4,6 @@
     using NUnit.Framework;
     using BudgetProgram;
     using BudgetLists;
-
-    [TestFixture()]
     public class DeductPercentageExpensesTests
     {
         public PercentageExpense p;
@@ -16,7 +14,7 @@
             p = new PercentageExpense();
         }
 
-        [Test()]
+        [Test]
         public void DeductPercentageExpensesTest_DeductibleExpenses_ReturnsBalance()
         {
             var calc = new BudgetCalculator();
@@ -27,7 +25,7 @@
                 { "Dator", 0.25M }
             };
 
-            var actual = calc.DeductPercentageExpenses(balance, p);
+            decimal actual = calc.DeductPercentageExpenses(balance, p);
             const int expected = 13000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
@@ -42,7 +40,7 @@
                 {"Oförutsedda utgifter", 1.10M}
             };
 
-            var actual = calc.DeductPercentageExpenses(balance, p);
+            decimal actual = calc.DeductPercentageExpenses(balance, p);
             const int expected = 20000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
@@ -52,7 +50,7 @@
         {
             var calc = new BudgetCalculator();
             const decimal balance = 20000;
-            var actual = calc.DeductPercentageExpenses(balance, null);
+            decimal actual = calc.DeductPercentageExpenses(balance, null);
             const int expected = 20000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
@@ -63,7 +61,7 @@
             var calc = new BudgetCalculator();
             const decimal balance = 20000;
             p.PercentageExpenses = new Dictionary<string, decimal>();
-            var actual = calc.DeductPercentageExpenses(balance, p);
+            decimal actual = calc.DeductPercentageExpenses(balance, p);
             const int expected = 20000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }

@@ -1,10 +1,9 @@
-﻿using BudgetProgram;
-using BudgetProgram.BudgetLists;
-using NUnit.Framework;
-using System.Collections.Generic;
-
-namespace BudgetProgramTests
+﻿namespace BudgetProgramTests
 {
+    using BudgetProgram;
+    using BudgetProgram.BudgetLists;
+    using NUnit.Framework;
+    using System.Collections.Generic;
     public class Tests
     {
         private Income income;

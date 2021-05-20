@@ -1,13 +1,10 @@
-﻿
-using System;
-using System.Linq;
-
-namespace BudgetProgram.HelperMethods.Tests
+﻿namespace BudgetProgramTests.HelperMethods
 {
-    using System.Collections.Generic;
-    using BudgetLists;
+    using BudgetProgram.BudgetLists;
+    using BudgetProgram.HelperMethods;
     using NUnit.Framework;
-    [TestFixture()]
+    using System.Collections.Generic;
+    using System.Linq;
     public class ExpenseHelperTests
     {
         public PercentageExpense p;
@@ -18,7 +15,7 @@ namespace BudgetProgram.HelperMethods.Tests
             p = new PercentageExpense();
         }
 
-        [Test()]
+        [Test]
         public void GetAbsoluteValueTest_NegativeProcentage_ReturnsAbsoluteValue()
         {
             p.PercentageExpenses = new Dictionary<string, decimal>
@@ -29,7 +26,7 @@ namespace BudgetProgram.HelperMethods.Tests
             };
 
             ExpenseHelper.GetAbsoluteValue(p.PercentageExpenses);
-            var actual = p.PercentageExpenses.Values.Sum();
+            decimal actual = p.PercentageExpenses.Values.Sum();
             const decimal expected = 0.6M;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
@@ -52,8 +49,7 @@ namespace BudgetProgram.HelperMethods.Tests
         [TestCase(false, 0.8, 0.25)]
         public void PercentageDoesNotExceed100Test(bool expected, decimal totalPercentage, decimal value)
         {
-            var actual = ExpenseHelper.TotalPercentageDoesNotExceed100(totalPercentage, value);
-
+            bool actual = ExpenseHelper.TotalPercentageDoesNotExceed100(totalPercentage, value);
             Assert.That(actual, Is.EqualTo(expected));
         }
     }

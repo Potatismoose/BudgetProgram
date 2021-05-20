@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace BudgetProgram.BudgetLists
+﻿namespace BudgetProgram.BudgetLists
 {
+    using System.Collections.Generic;
     public class Expense
     {
         public Dictionary<string, decimal> HouseholdExpenses { get; set; }

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using BudgetProgram.BudgetLists;
-
-namespace BudgetProgram.HelperMethods
+﻿namespace BudgetProgram.HelperMethods
 {
+    using System;
+    using System.Collections.Generic;
     public class ExpenseHelper
     {
         public decimal TotalExpences(Dictionary<string, decimal> expenses)
         {
             decimal total = 0;
-            foreach (var item in expenses.Values)
+            foreach (decimal item in expenses.Values)
             {
                 total += item;
             }
@@ -24,17 +20,18 @@ namespace BudgetProgram.HelperMethods
         /// <param name="expenses"></param>
         public static void GetAbsoluteValue(Dictionary<string, decimal> expenses)
         {
-            foreach (var (key, value) in expenses)
+            foreach ((string key, decimal value) in expenses)
             {
                 expenses[key] = Math.Abs(value);
             }
         }
 
+        // TODO: Skriv XML-kommentar
         public static Dictionary<string, decimal> SetDefaultKey(Dictionary<string, decimal> expenses)
         {
             var counter = 1;
             var dictionary = new Dictionary<string, decimal>();
-            foreach (var (key, value) in expenses)
+            foreach ((string key, decimal value) in expenses)
             {
                 dictionary.Add(string.IsNullOrEmpty(key) ? $"Ospecificerad utgift {counter++}" : key, value);
             }
@@ -42,6 +39,7 @@ namespace BudgetProgram.HelperMethods
             return dictionary;
         }
 
+        // TODO: Skriv XML-kommentar
         public static bool TotalPercentageDoesNotExceed100(decimal totalProcentage, decimal value)
         {
             return totalProcentage + value <= 1;
