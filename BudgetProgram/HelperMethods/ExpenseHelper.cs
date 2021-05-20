@@ -3,12 +3,16 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     public class ExpenseHelper
     {
         public decimal TotalExpences(Dictionary<string, decimal> expenses)
         {
-            return expenses.Values.Sum();
+            decimal total = 0;
+            foreach (decimal item in expenses.Values)
+            {
+                total += item;
+            }
+            return total;
         }
 
         /// <summary>

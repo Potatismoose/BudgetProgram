@@ -5,8 +5,6 @@
     using NUnit.Framework;
     using System.Collections.Generic;
     using System.Linq;
-
-    [TestFixture()]
     public class ExpenseHelperTests
     {
         private PercentageExpense _p;
@@ -17,7 +15,7 @@
             _p = new PercentageExpense();
         }
 
-        [Test()]
+        [Test]
         public void GetAbsoluteValueTest_NegativeProcentage_ReturnsAbsoluteValue()
         {
             _p.HouseholdPercentageExpenses = new Dictionary<string, decimal>

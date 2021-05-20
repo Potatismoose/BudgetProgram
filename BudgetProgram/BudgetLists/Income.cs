@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-
     public class Income
     {
         public Dictionary<string, decimal> HouseholdIncome { get; set; }

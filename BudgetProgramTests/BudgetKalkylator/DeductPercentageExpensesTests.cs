@@ -4,8 +4,8 @@
     using BudgetProgram.BudgetLists;
     using NUnit.Framework;
     using System.Collections.Generic;
-
-    [TestFixture()]
+    using BudgetProgram;
+    using BudgetLists;
     public class DeductPercentageExpensesTests
     {
         private PercentageExpense _p;
@@ -16,7 +16,7 @@
             _p = new PercentageExpense();
         }
 
-        [Test()]
+        [Test]
         public void DeductPercentageExpensesTest_DeductibleExpenses_ReturnsBalance()
         {
             var calc = new BudgetCalculator();
