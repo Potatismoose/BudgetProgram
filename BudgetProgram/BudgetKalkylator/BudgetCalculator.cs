@@ -35,16 +35,16 @@
             p.HouseholdPercentageExpenses = SetDefaultKey(p.HouseholdPercentageExpenses);
             GetAbsoluteValue(p.HouseholdPercentageExpenses);
 
-            foreach ((string _, decimal value) in p.HouseholdPercentageExpenses)
+            foreach (var expense in p.HouseholdPercentageExpenses)
             {
-                if (TotalPercentageDoesNotExceed100(totalPercentage, value))
+                if (TotalPercentageDoesNotExceed1(totalPercentage, expense.Value))
                 {
-                    totalPercentage += value;
-                    balance -= tempBalance * value;
+                    totalPercentage += expense.Value;
+                    balance -= tempBalance * expense.Value;
                 }
                 else
                 {
-                    // TODO: Log error message
+                    //Logger.LogError(expense);
                 }
             }
 

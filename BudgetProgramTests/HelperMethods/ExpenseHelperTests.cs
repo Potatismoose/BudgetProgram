@@ -69,7 +69,7 @@
         [TestCase(false, -0.8, 0.25)]
         public void PercentageDoesNotExceed100Test(bool expected, decimal currentPercentage, decimal percentage)
         {
-            bool actual = ExpenseHelper.TotalPercentageDoesNotExceed100(currentPercentage, percentage);
+            bool actual = ExpenseHelper.TotalPercentageDoesNotExceed1(currentPercentage, percentage);
             Assert.That(actual, Is.EqualTo(expected));
         }
     }

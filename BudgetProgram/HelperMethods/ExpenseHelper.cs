@@ -11,6 +11,7 @@
             {
                 total += item;
             }
+            
             return total;
         }
 
@@ -59,7 +60,7 @@
         /// <param name="value">Procentvärdet som ska försöka
         /// läggas till den totala procenten.</param>
         /// <returns>Sant om den totala procenten inte kommer överstiga 100%, annars falskt.</returns>
-        public static bool TotalPercentageDoesNotExceed100(decimal totalProcentage, decimal value)
+        public static bool TotalPercentageDoesNotExceed1(decimal totalProcentage, decimal value)
         {
             return Math.Abs(totalProcentage) + Math.Abs(value) <= 1;
         }
