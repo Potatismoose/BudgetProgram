@@ -19,21 +19,27 @@
 
             return calculatedSum;
         }
-
+        /// <summary>
+        /// Takes a balance and deducts the total amount of expences.
+        /// If expenses is null the return is 0;
+        /// </summary>
+        /// <param name="balance"></param>
+        /// <param name="expenses"></param>
+        /// <returns>Balance minus all expenses.</returns>
         public decimal DeductExpenses(decimal balance, Expense expenses)
         {
-            decimal result = 0;
-            if (expenses.HouseholdExpenses == null)
+          
+            if (expenses == null)
             {
-                return 0;
+                return balance;
             }
 
             foreach (var expense in expenses.HouseholdExpenses.Values)
             {
-                result = balance -= expense;
+                 balance -= expense;
             }
 
-            return result;
+            return balance;
         }
 
         /// <summary>

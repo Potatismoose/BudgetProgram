@@ -47,5 +47,19 @@ namespace BudgetProgram.BudgetKalkylator.Tests
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
+        [Test()]
+        public void DeductExpensesTest_03()
+        {
+            // Arrange 
+            var balance = 20000;
+            var calc = new BudgetCalculator();
+
+            // Act
+            decimal actual = calc.DeductExpenses(balance, null);
+            const decimal expected = 20000;
+
+            // Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 }
