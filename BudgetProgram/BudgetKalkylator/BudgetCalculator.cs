@@ -20,6 +20,22 @@
             return calculatedSum;
         }
 
+        public decimal DeductExpenses(decimal balance, Expense expenses)
+        {
+            decimal result = 0;
+            if (expenses.HouseholdExpenses == null)
+            {
+                return 0;
+            }
+
+            foreach (var expense in expenses.HouseholdExpenses.Values)
+            {
+                result = balance -= expense;
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Takes balance and deducts percentage expenses.
         /// If total percentage surpasses 100% that deduction is not made.
@@ -68,7 +84,7 @@
         {
             if (incomes == null) return 0;
             decimal balance = incomes.HouseholdIncome.Sum(i => i.Value);
-            // TODO: balance = DeductExpenses(balance, expenses);
+            balance = DeductExpenses(balance, expenses);
             return DeductPercentageExpenses(balance, percentageExpenses);
         }
     }
