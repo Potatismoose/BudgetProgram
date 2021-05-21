@@ -20,7 +20,7 @@
             return calculatedSum;
         }
         /// <summary>
-        /// Takes a balance and deducts the total amount of expences.
+        /// Takes a balance and deducts the total amount of expenses.
         /// If expenses is null the return is 0;
         /// </summary>
         /// <param name="balance"></param>
@@ -28,7 +28,6 @@
         /// <returns>Balance minus all expenses.</returns>
         public decimal DeductExpenses(decimal balance, Expense expenses)
         {
-          
             if (expenses == null)
             {
                 return balance;
