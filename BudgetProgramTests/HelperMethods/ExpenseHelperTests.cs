@@ -16,7 +16,7 @@
         }
 
         [Test]
-        public void GetAbsoluteValueTest_NullInput()
+        public void GetAbsoluteValueTest_NullInput_ReturnsEmptyDictionary()
         {
             var actual = ExpenseHelper.GetAbsoluteValue(null);
             var expected = new Dictionary<string, decimal>();
@@ -41,7 +41,7 @@
         }
 
         [Test]
-        public void SetDefaultKeyTest_NullInput()
+        public void SetDefaultKeyTest_NullInput_ReturnsEmptyDictionary()
         {
             var actual = ExpenseHelper.SetDefaultKey(null);
             var expected = new Dictionary<string, decimal>();
@@ -63,11 +63,11 @@
             Assert.That(actual, Is.EqualTo(expected));
         }
 
-        [TestCase(true, 0, 0.25)]
-        [TestCase(false, 0.8, 0.25)]
-        [TestCase(false, -0.8, 0.25)]
-        [TestCase(false, -0.8, 0.25)]
-        public void PercentageDoesNotExceed100Test(bool expected, decimal currentPercentage, decimal percentage)
+        [TestCase(true, 0, 0.25, TestName = "PercentageDoesNotExceed1Test_TotalNotExeeding1_ReturnsTrue")]
+        [TestCase(false, 0.8, 0.25, TestName = "PercentageDoesNotExceed1Test_TotalExceeds1_ReturnsFalse")]
+        [TestCase(true, 0, -0.25, TestName = "PercentageDoesNotExceed1Test_NegativePercentage_ReturnsTrue")]
+        [TestCase(true, -0.8, 0.1, TestName = "PercentageDoesNotExceed1Test_NegativeCurrentPercentage_ReturnsTrue")]
+        public void PercentageDoesNotExceed1Test(bool expected, decimal currentPercentage, decimal percentage)
         {
             bool actual = ExpenseHelper.TotalPercentageDoesNotExceed1(currentPercentage, percentage);
             Assert.That(actual, Is.EqualTo(expected));

@@ -15,7 +15,7 @@
         }
 
         [Test]
-        public void DeductPercentageExpensesTest_DeductibleExpenses_ReturnsBalance()
+        public void DeductPercentageExpensesTest_DeductibleExpenses_ReturnsBalanceChanged()
         {
             var calc = new BudgetCalculator();
             const decimal balance = 20000;
@@ -31,17 +31,19 @@
         }
 
         [Test]
-        public void DeductPercentageExpenses_ToHighPercentage_ReturnsBalance()
+        public void DeductPercentageExpenses_ToHighPercentage_ReturnsBalanceChanged()
         {
             var calc = new BudgetCalculator();
             const decimal balance = 20000;
             _p.HouseholdPercentageExpenses = new Dictionary<string, decimal>
             {
+                { "Spara", 0.1M },
+                { "Dator", 0.25M },
                 { "Oförutsedda utgifter", 1.10M }
             };
 
             decimal actual = calc.DeductPercentageExpenses(balance, _p);
-            const int expected = 20000;
+            const int expected = 13000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.00005));
         }
 
