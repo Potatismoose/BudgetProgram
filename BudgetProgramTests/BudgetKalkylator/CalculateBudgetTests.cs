@@ -9,7 +9,7 @@
     public class CalculateBudgetTests
     {
         private BudgetCalculator _calc;
-        private Dictionary<string, decimal> _householdIncomes;
+        private Income _incomes;
         private Expense _expenses;
         private PercentageExpense _percentageExpenses;
 
@@ -17,16 +17,22 @@
         public void SetUp()
         {
             _calc = new BudgetCalculator();
-            _householdIncomes = new Dictionary<string, decimal>
-            {
-                { "Lön", 20000 }
-            };
+            
 
             _expenses = new Expense
             {
                 HouseholdExpenses = new Dictionary<string, decimal>
                 {
                     { "Hyra", 7800 }
+                }
+            };
+
+            _incomes = new Income
+            {
+                HouseholdIncomes = new Dictionary<string, decimal>
+                {
+                    { "Lön", 20000 },
+                    //{ "Försäljning", -1500 }
                 }
             };
 
@@ -42,8 +48,8 @@
         [Test()]
         public void CalculateBudgetTest_ValidDictionaries_ReturnsBalance()
         {
-            var incomes = new Income(_householdIncomes);
-            decimal actual = _calc.CalculateBudget(incomes, _expenses, _percentageExpenses);
+            
+            decimal actual = _calc.CalculateBudget(_incomes, _expenses, _percentageExpenses);
             const decimal expected = 18000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.000005));
         }
@@ -58,7 +64,9 @@
         [Test]
         public void CalculateBudgetTest_NoIncomes_ReturnsZero()
         {
-            var incomes = new Income(new Dictionary<string, decimal>());
+            var incomes = new Income
+                { HouseholdIncomes = new Dictionary<string, decimal>() };
+
             decimal actual = _calc.CalculateBudget(incomes, _expenses, _percentageExpenses);
             Assert.That(actual, Is.Zero);
         }
