@@ -8,6 +8,28 @@
     public class BudgetCalculator
     {
         /// <summary>
+        /// Takes a balance and deducts the total amount of expenses.
+        /// If expenses is null the return is the balance;
+        /// </summary>
+        /// <param name="balance"></param>
+        /// <param name="expenses"></param>
+        /// <returns>Balance minus all expenses.</returns>
+        public decimal DeductExpenses(decimal balance, Expense expenses)
+        {
+            if (expenses == null || expenses.HouseholdExpenses == null)
+            {
+                return balance;
+            }
+
+            foreach (var expense in expenses.HouseholdExpenses.Values)
+            {
+                 balance -= expense;
+            }
+
+            return balance;
+        }
+
+        /// <summary>
         /// Takes balance and deducts percentage expenses.
         /// If total percentage surpasses 100% that deduction is not made.
         /// </summary>
@@ -55,7 +77,7 @@
         {
             if (incomes == null) return 0;
             decimal balance = incomes.HouseholdIncomes.Sum(i => i.Value);
-            // TODO: balance = DeductExpenses(balance, expenses);
+            balance = DeductExpenses(balance, expenses);
             return DeductPercentageExpenses(balance, percentageExpenses);
         }
     }
