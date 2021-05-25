@@ -28,10 +28,11 @@
                 {
                     totalPercentage += expense.Value;
                     balance -= tempBalance * expense.Value;
+                    Logger.LogReport(p, expense);
                 }
                 else
                 {
-                    Logger.LogError(p, expense);
+                    Logger.LogErrorAndAddToReport(p, expense);
                 }
             }
 

@@ -6,6 +6,7 @@
     public class PercentageExpense : ILogable
     {
         public Dictionary<string, decimal> HouseholdPercentageExpenses { get; set; }
+        private const int percentage = 100;
 
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expense)
         {
@@ -13,7 +14,7 @@
             sb.Append("Den procentuella utgiften ")
                 .Append(expense.Key)
                 .Append(" på ")
-                .AppendFormat("{0:C}", expense.Value)
+                .AppendFormat($"{expense.Value*percentage}%")
                 .AppendLine(" gick inte att dra då det saknas pengar.");
 
             return sb.ToString();
