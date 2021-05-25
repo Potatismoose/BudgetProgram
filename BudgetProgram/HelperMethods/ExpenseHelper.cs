@@ -16,7 +16,7 @@
         }
 
         /// <summary>
-        /// Ser till att varje post i lexikonet har sitt absoulta värde.
+        /// Ser till att varje post i lexikonet har sitt absoluta värde.
         /// </summary>
         /// <param name="expenses">Utgiften som ska kontrolleras.</param>
         public static Dictionary<string, decimal> GetAbsoluteValue(Dictionary<string, decimal> expenses)

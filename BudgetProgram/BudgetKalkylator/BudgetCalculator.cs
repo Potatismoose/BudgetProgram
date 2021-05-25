@@ -21,14 +21,14 @@
         }
         /// <summary>
         /// Takes a balance and deducts the total amount of expenses.
-        /// If expenses is null the return is 0;
+        /// If expenses is null the return is the balance;
         /// </summary>
         /// <param name="balance"></param>
         /// <param name="expenses"></param>
         /// <returns>Balance minus all expenses.</returns>
         public decimal DeductExpenses(decimal balance, Expense expenses)
         {
-            if (expenses == null)
+            if (expenses == null || expenses.HouseholdExpenses == null)
             {
                 return balance;
             }
