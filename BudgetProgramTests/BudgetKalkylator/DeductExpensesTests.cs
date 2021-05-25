@@ -8,9 +8,9 @@ namespace BudgetProgram.BudgetKalkylator.Tests
     [TestFixture()]
     public class DeductExpensesTests
     {
-        [TestCase(4500, 15500, TestName = "")]
-        [TestCase(8000, 12000, TestName = "")]
-        public void DeductExpensesTest_01(Decimal value, Decimal expected)  // Ändra till mer beskrivande namn i testcasehuvudet. 
+        [TestCase(4500, 15500, TestName = "DeductExpensesTest_1_Values_ReturnsRest")]
+        [TestCase(8000, 12000, TestName = "DeductExpensesTest_2_Values_ReturnsRest")]
+        public void DeductExpensesTest_01(Decimal value, Decimal expected)
         {
             // Arrange 
             var balance = 20000;
@@ -26,8 +26,25 @@ namespace BudgetProgram.BudgetKalkylator.Tests
             Assert.That(actual, Is.EqualTo(expected));
         }
 
+        [TestCase(10000, 0, TestName = "DeductExpensesTest_3_If_Balance_0_Return_0")]
+        public void DeductExpensesTest_02(Decimal value, Decimal expected)
+        {
+            // Arrange 
+            var balance = 0;
+            var expenses = new Expense();
+            expenses.HouseholdExpenses = new Dictionary<string, decimal>();
+            expenses.HouseholdExpenses.Add("hyra", value);
+            var calc = new BudgetCalculator();
+
+            // Act
+            decimal actual = calc.DeductExpenses(balance, expenses);
+
+            // Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
         [Test()]
-        public void DeductExpensesTest_03()
+        public void DeductExpensesTest_04_If_Expenses_Is_Null_return_Balance()
         {
             // Arrange 
             var balance = 20000;
@@ -42,7 +59,7 @@ namespace BudgetProgram.BudgetKalkylator.Tests
         }
 
         [Test()]
-        public void DeductExpensesTest_04()
+        public void DeductExpensesTest_05_If_Expenses_Is_null_Return_Balance()
         {
             // Arrange 
             var balance = 20000;
