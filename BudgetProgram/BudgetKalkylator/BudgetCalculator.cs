@@ -1,24 +1,12 @@
 ﻿namespace BudgetProgram.BudgetKalkylator
 {
     using BudgetLists;
+    using Interfaces;
     using System.Linq;
     using static HelperMethods.ExpenseHelper;
+
     public class BudgetCalculator
     {
-        public decimal CalculateRest(Income incomes, Expense expenses)
-        {
-            if (incomes == null)
-            {
-                return 0;
-            }
-            decimal calculatedSum = incomes.HouseholdIncome.Sum(x => x.Value);
-            foreach (decimal expense in expenses.HouseholdExpenses.Values.Where(expense => calculatedSum - expense > 0))
-            {
-                calculatedSum -= expense;
-            }
-
-            return calculatedSum;
-        }
         /// <summary>
         /// Takes a balance and deducts the total amount of expenses.
         /// If expenses is null the return is the balance;
@@ -65,7 +53,7 @@
                 }
                 else
                 {
-                    //Logger.LogError(expense);
+                    Logger.LogError(p, expense);
                 }
             }
 
@@ -88,7 +76,7 @@
             PercentageExpense percentageExpenses)
         {
             if (incomes == null) return 0;
-            decimal balance = incomes.HouseholdIncome.Sum(i => i.Value);
+            decimal balance = incomes.HouseholdIncomes.Sum(i => i.Value);
             balance = DeductExpenses(balance, expenses);
             return DeductPercentageExpenses(balance, percentageExpenses);
         }

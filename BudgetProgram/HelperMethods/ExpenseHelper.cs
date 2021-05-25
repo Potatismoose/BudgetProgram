@@ -11,7 +11,6 @@
             {
                 total += item;
             }
-            
             return total;
         }
 
@@ -44,9 +43,9 @@
             if (expenses == null) return dictionary;
             foreach ((string key, decimal value) in expenses)
             {
-                dictionary.Add(string.IsNullOrEmpty(key) 
-                               || string.IsNullOrWhiteSpace(key) 
-                    ? $"Ospecificerad utgift {counter++}" : key, value);
+                dictionary.Add(string.IsNullOrEmpty(key)
+                               || string.IsNullOrWhiteSpace(key)
+                               ? $"Ospecificerad utgift {counter++}" : key, value);
             }
 
             return dictionary;
@@ -63,6 +62,12 @@
         public static bool TotalPercentageDoesNotExceed1(decimal totalProcentage, decimal value)
         {
             return Math.Abs(totalProcentage) + Math.Abs(value) <= 1;
+        }
+
+        public string SendErrorMessageToLogMethod()
+        {
+            //TODO: Implement this method
+            return "";
         }
     }
 }
