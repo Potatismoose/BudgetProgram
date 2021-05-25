@@ -20,13 +20,28 @@
             {
                 return balance;
             }
-
+            if (balance == 0)
+            {
+                return balance;
+            }
             foreach (var expense in expenses.HouseholdExpenses.Values)
             {
-                 balance -= expense;
+                balance -= expense;
             }
 
             return balance;
+        }
+
+        public decimal CalculateIncomes(Income incomes)
+        {
+            var totalIncomes = 0;
+            if (incomes == null)
+            {
+                return 0;
+            }
+
+
+            return totalIncomes;
         }
 
         /// <summary>
