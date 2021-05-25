@@ -23,7 +23,7 @@
             {
                 HouseholdExpenses = new Dictionary<string, decimal>
                 {
-                    { "Hyra", 7800 }
+                    { "Hyra", 10000 }
                 }
             };
 
@@ -50,8 +50,22 @@
         {
             
             decimal actual = _calc.CalculateBudget(_incomes, _expenses, _percentageExpenses);
-            const decimal expected = 18000;
+            const decimal expected = 9000;
             Assert.That(actual, Is.EqualTo(expected).Within(0.000005));
+        }
+
+        [Test()]
+        public void CalculateBudgetTest_ZeroIncomes_ReturnsZero()
+        {
+            var incomes = new Income
+            {
+                HouseholdIncomes = new Dictionary<string, decimal>
+                {
+                    { "Lön", 0 }
+                }
+            };
+            decimal actual = _calc.CalculateBudget(incomes, _expenses, _percentageExpenses);
+            Assert.That(actual, Is.Zero);
         }
 
         [Test]
