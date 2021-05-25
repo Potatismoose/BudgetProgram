@@ -14,7 +14,7 @@
             sb.Append("Den procentuella utgiften ")
                 .Append(expenses.Key)
                 .Append(" på ")
-                .AppendFormat($"{expense.Value*percentage}%")
+                .AppendFormat($"{expenses.Value*percentage}%")
                 .AppendLine(" gick inte att dra då det saknas pengar.");
 
             return sb.ToString();
