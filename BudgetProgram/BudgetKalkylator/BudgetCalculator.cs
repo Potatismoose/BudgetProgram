@@ -50,7 +50,7 @@
         /// <returns>the new changed balance.</returns>
         public decimal DeductPercentageExpenses(decimal balance, PercentageExpense p)
         {
-            if (p == null) return balance;
+            if (balance <= 0 || p == null) return balance;
             decimal tempBalance = balance;
             var totalPercentage = 0.0M;
             p.HouseholdPercentageExpenses = SetDefaultKey(p.HouseholdPercentageExpenses);
