@@ -29,6 +29,18 @@
             return balance;
         }
 
+        public decimal CalculateIncomes(Income incomes)
+        {
+            var totalIncomes = 0;
+            if (incomes == null)
+            {
+                return 0;
+            }
+              
+
+            return totalIncomes;
+        }
+
         /// <summary>
         /// Takes balance and deducts percentage expenses.
         /// If total percentage surpasses 100% that deduction is not made.
