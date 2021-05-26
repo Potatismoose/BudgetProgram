@@ -25,7 +25,8 @@
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> income)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("Inkomsten ")
+            sb.AppendLine("\tFelmeddelande")
+                .Append("Inkomsten ")
                 .Append(income.Key)
                 .Append(" på ")
                 .AppendFormat("{0:C}", income.Value)

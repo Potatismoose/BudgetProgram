@@ -16,7 +16,8 @@
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expenses)
         {
             var sb = new StringBuilder();
-            sb.Append("Den procentuella utgiften ")
+            sb.AppendLine("\tFelmeddelande")
+                .Append("Den procentuella utgiften ")
                 .Append(expenses.Key)
                 .Append(" på ")
                 .AppendFormat($"{expenses.Value * percentage}%")

@@ -18,7 +18,8 @@ namespace BudgetProgram.BudgetLists
         {
 
             StringBuilder sb = new StringBuilder();
-            sb.Append("Utgiften ")
+            sb.AppendLine("\tFelmeddelande")
+                .Append("Utgiften ")
                 .Append(expense.Key)
                 .Append(" på ")
                 .AppendFormat("{0:C}", expense.Value)

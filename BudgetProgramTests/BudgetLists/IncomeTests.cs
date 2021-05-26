@@ -34,17 +34,30 @@ namespace BudgetProgram.BudgetLists.Tests
         public void GetErrorMessageForLogMethodTest_Hyra6761_ReturnsStringContainingHyra6761()
         {
             //Arrange
-            NumberFormatInfo nfi = new CultureInfo("sv-SE", false).NumberFormat;
-            nfi.CurrencyGroupSeparator = " ";
             var incomes = new Income();
-            var keyValuePair = dictionary.ElementAt(0);
+            var keyValuePair = dictionary.First();
             var expectedSum = "6\u00A0761,00 kr";
             //Act
             var actual = incomes.GetErrorMessageForLogMethod(keyValuePair);
             //Assert
             Assert.That(actual, Does.Contain(keyValuePair.Key));
             Assert.That(actual, Does.Contain(expectedSum));
-            Assert.That(actual, Does.StartWith("Inkomsten").IgnoreCase);
+            Assert.That(actual, Does.StartWith("\tFelmeddelande").IgnoreCase);
+        }
+
+        [Test()]
+        [SetCulture("sv-SE")]
+        public void GetErrorMessageForNULL_NULLDictionary_ReturnsStringContainingFelmeddelande()
+        {
+            //Arrange
+            var incomes = new Income();
+            var expected = "Felmeddelande";
+            var expected2 = "ej specificerad";
+            //Act
+            var actual = incomes.GetErrorMessageForNULL();
+            //Assert
+            Assert.That(actual, Does.Contain(expected));
+            Assert.That(actual, Does.Contain(expected2));
         }
     }
 }

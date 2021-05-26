@@ -9,16 +9,17 @@ using System.Threading.Tasks;
 namespace BudgetProgram.BudgetLists.Tests
 {
     [TestFixture()]
-    public class ExpenseTests
+    public class PercentageExpenseTests
     {
         private static Dictionary<string, decimal> dictionary;
+        private const int Percentage = 100;
 
         [SetUp]
         public void Setup()
         {
             dictionary = new Dictionary<string, decimal>()
             {
-                { "Hyra", 5005}
+                { "Sparande", 0.9m}
             };
         }
 
@@ -30,14 +31,15 @@ namespace BudgetProgram.BudgetLists.Tests
 
         [Test()]
         [SetCulture("sv-SE")]
-        public void GetErrorMessageForLogMethodTest_Hyra6761_ReturnsStringContainingHyra6761()
+        public void GetErrorMessageForLogMethodTest_ZeroPointNine_ReturnsStringContaining90Percent()
         {
             //Arrange
-            var expenses = new Expense();
+            var percentageexpense = new PercentageExpense();
             var keyValuePair = dictionary.First();
-            var expectedSum = "5\u00A0005,00 kr";
+
+            var expectedSum = Convert.ToString(keyValuePair.Value * Percentage);
             //Act
-            var actual = expenses.GetErrorMessageForLogMethod(keyValuePair);
+            var actual = percentageexpense.GetErrorMessageForLogMethod(keyValuePair);
             //Assert
             Assert.That(actual, Does.Contain(keyValuePair.Key));
             Assert.That(actual, Does.Contain(expectedSum));
@@ -49,11 +51,11 @@ namespace BudgetProgram.BudgetLists.Tests
         public void GetErrorMessageForNULL_NULLDictionary_ReturnsStringContainingFelmeddelande()
         {
             //Arrange
-            var expenses = new Expense();
+            var percentageExpense = new PercentageExpense();
             var expected = "Felmeddelande";
             var expected2 = "ej specificerad";
             //Act
-            var actual = expenses.GetErrorMessageForNULL();
+            var actual = percentageExpense.GetErrorMessageForNULL();
             //Assert
             Assert.That(actual, Does.Contain(expected));
             Assert.That(actual, Does.Contain(expected2));
