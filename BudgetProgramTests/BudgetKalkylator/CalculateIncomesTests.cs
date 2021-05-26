@@ -36,12 +36,12 @@ namespace BudgetProgram.BudgetKalkylator.Tests
         public void CalculateIncomesTest_2_NullIncome_Returns_Balance()
         {
             // Arrange 
-            decimal balance = 0;
+            decimal balance = 1500;
             var calc = new BudgetCalculator();
 
             // Act
             decimal actual = calc.CalculateIncomes(balance, null);
-            const decimal expected = 0;
+            const decimal expected = 1500;
 
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
