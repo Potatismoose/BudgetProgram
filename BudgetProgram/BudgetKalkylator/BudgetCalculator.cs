@@ -1,4 +1,6 @@
-﻿namespace BudgetProgram.BudgetKalkylator
+﻿using System.Collections.Generic;
+
+namespace BudgetProgram.BudgetKalkylator
 {
     using BudgetLists;
     using Interfaces;
@@ -18,6 +20,10 @@
         {
             if (expenses == null || expenses.HouseholdExpenses == null)
             {
+                expenses = new Expense();
+                expenses.HouseholdExpenses = new Dictionary<string, decimal>();
+                expenses.HouseholdExpenses.Add("Utgift", 0);
+                Logger.LogNullErrorAndAddToReport(expenses, expenses.HouseholdExpenses.First());
                 return balance;
             }
             if (balance == 0)
@@ -47,10 +53,9 @@
             {
                 incomes = new Income();
                 incomes.HouseholdIncomes.Add("Inkomst", 0);
-                Logger.(incomes, incomes.HouseholdIncomes.First());
+                Logger.LogNullErrorAndAddToReport(incomes, incomes.HouseholdIncomes.First());
                 return 0;
             }
-
 
             return totalIncomes;
         }
