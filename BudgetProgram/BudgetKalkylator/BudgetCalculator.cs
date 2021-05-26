@@ -45,19 +45,21 @@ namespace BudgetProgram.BudgetKalkylator
             return balance;
         }
 
-        public decimal CalculateIncomes(Income incomes)
+        public decimal CalculateIncomes(decimal balance, Income incomes)
         {
-            var totalIncomes = 0;
-            
             if (incomes == null || incomes.HouseholdIncomes == null)
             {
                 incomes = new Income();
                 incomes.HouseholdIncomes.Add("Inkomst", 0);
                 Logger.LogNullErrorAndAddToReport(incomes, incomes.HouseholdIncomes.First());
-                return totalIncomes;
+                return balance;
             }
 
-            return totalIncomes;
+            foreach (var income in incomes.HouseholdIncomes)
+            {
+                balance += income.Value;
+            }
+            return balance;
         }
 
         /// <summary>
