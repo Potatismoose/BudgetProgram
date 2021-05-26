@@ -54,7 +54,7 @@ namespace BudgetProgram.BudgetKalkylator
                 incomes = new Income();
                 incomes.HouseholdIncomes.Add("Inkomst", 0);
                 Logger.LogNullErrorAndAddToReport(incomes, incomes.HouseholdIncomes.First());
-                return 0;
+                return totalIncomes;
             }
 
             return totalIncomes;
