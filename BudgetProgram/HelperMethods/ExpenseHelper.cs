@@ -7,6 +7,7 @@
         public decimal TotalExpences(Dictionary<string, decimal> expenses)
         {
             decimal total = 0;
+            if (expenses == null) return total;
             foreach (decimal item in expenses.Values)
             {
                 total += item;

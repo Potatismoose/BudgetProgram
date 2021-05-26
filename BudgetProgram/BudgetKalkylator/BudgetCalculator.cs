@@ -20,10 +20,13 @@
             {
                 return balance;
             }
-
+            if (balance == 0)
+            {
+                return balance;
+            }
             foreach (var expense in expenses.HouseholdExpenses.Values)
             {
-                 balance -= expense;
+                balance -= expense;
             }
 
             return balance;
@@ -36,7 +39,7 @@
             {
                 return 0;
             }
-              
+
 
             return totalIncomes;
         }
