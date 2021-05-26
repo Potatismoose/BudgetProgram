@@ -14,7 +14,7 @@
                 Logger.LogError(income as ILogable, item);
                 income.Remove(item.Key);
             }
-          */
+        */
 
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> income)
         {
@@ -24,6 +24,14 @@
                 .Append(" på ")
                 .AppendFormat("{0:C}", income.Value)
                 .AppendLine(" har tagits bort då den var felaktigt formaterad.");
+
+            return sb.ToString();
+        }
+
+        public string GetErrorMessageForNULLIncome()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Inkomsten är ej specificerad");
 
             return sb.ToString();
         }
