@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace BudgetProgram.BudgetLists.Tests
 {
     [TestFixture()]
-    public class ExpenseTests
+    public class IncomeTests
     {
         private static Dictionary<string, decimal> dictionary;
 
@@ -18,7 +19,7 @@ namespace BudgetProgram.BudgetLists.Tests
         {
             dictionary = new Dictionary<string, decimal>()
             {
-                { "Hyra", 5005}
+                { "Hyra", 6761}
             };
         }
 
@@ -33,15 +34,17 @@ namespace BudgetProgram.BudgetLists.Tests
         public void GetErrorMessageForLogMethodTest_Hyra6761_ReturnsStringContainingHyra6761()
         {
             //Arrange
-            var expenses = new Expense();
+            NumberFormatInfo nfi = new CultureInfo("sv-SE", false).NumberFormat;
+            nfi.CurrencyGroupSeparator = " ";
+            var incomes = new Income();
             var keyValuePair = dictionary.ElementAt(0);
-            var expectedSum = "5\u00A0005,00 kr";
+            var expectedSum = "6\u00A0761,00 kr";
             //Act
-            var actual = expenses.GetErrorMessageForLogMethod(keyValuePair);
+            var actual = incomes.GetErrorMessageForLogMethod(keyValuePair);
             //Assert
             Assert.That(actual, Does.Contain(keyValuePair.Key));
             Assert.That(actual, Does.Contain(expectedSum));
-            Assert.That(actual, Does.StartWith("Utgiften").IgnoreCase);
+            Assert.That(actual, Does.StartWith("Inkomsten").IgnoreCase);
         }
     }
 }

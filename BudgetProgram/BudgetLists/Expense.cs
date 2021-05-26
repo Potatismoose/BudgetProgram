@@ -1,6 +1,7 @@
 ﻿using BudgetProgram.Interfaces;
 using System.Collections.Generic;
 using System.Text;
+using System.Globalization;
 
 namespace BudgetProgram.BudgetLists
 {
@@ -9,6 +10,7 @@ namespace BudgetProgram.BudgetLists
         public Dictionary<string, decimal> HouseholdExpenses { get; set; }
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expense)
         {
+           
             StringBuilder sb = new StringBuilder();
             sb.Append("Utgiften ")
                 .Append(expense.Key)
