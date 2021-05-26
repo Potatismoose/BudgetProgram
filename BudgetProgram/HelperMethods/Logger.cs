@@ -23,10 +23,10 @@ namespace BudgetProgram.Interfaces
 
         public static void LogNullErrorAndAddToReport(ILogable expenseOrIncome, KeyValuePair<string, decimal> keyValuePair)
         {
-            File.AppendAllText(errorlogPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair));
+            File.AppendAllText(errorlogPath, expenseOrIncome.GetErrorMessageForNULL());
             LogReport(expenseOrIncome, keyValuePair);
-            var stringLength = expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair).Length;
-            File.AppendAllText(reportPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair).PadLeft(stringLength + PaddingForReportFileError));
+            var stringLength = expenseOrIncome.GetErrorMessageForNULL().Length;
+            File.AppendAllText(reportPath, expenseOrIncome.GetErrorMessageForNULL().PadLeft(stringLength + PaddingForReportFileError));
         }
 
         public static void LogReport(ILogable expenseOrIncome, KeyValuePair<string, decimal> keyValuePair)

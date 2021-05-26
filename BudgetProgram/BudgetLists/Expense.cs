@@ -1,7 +1,6 @@
 ﻿using BudgetProgram.Interfaces;
 using System.Collections.Generic;
 using System.Text;
-using System.Globalization;
 
 namespace BudgetProgram.BudgetLists
 {
@@ -12,12 +11,12 @@ namespace BudgetProgram.BudgetLists
 
         public Expense()
         {
-            Name = "Utgifter";
+            Name = "Utgiften";
         }
 
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expense)
         {
-           
+
             StringBuilder sb = new StringBuilder();
             sb.Append("Utgiften ")
                 .Append(expense.Key)
@@ -30,7 +29,8 @@ namespace BudgetProgram.BudgetLists
         public string GetErrorMessageForNULL()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"{Name} är ej specificerat");
+            sb.AppendLine("\tFelmeddelande")
+            .AppendLine($"\t{Name} är ej specificerad, och behandlas ej.\r\n");
 
             return sb.ToString();
         }

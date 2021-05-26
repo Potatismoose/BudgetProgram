@@ -19,7 +19,7 @@
 
         public Income()
         {
-            Name = "Inkomster";
+            Name = "Inkomsten";
         }
 
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> income)
@@ -37,7 +37,8 @@
         public string GetErrorMessageForNULL()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"{Name} är ej specificerat");
+            sb.AppendLine("\tFelmeddelande")
+            .AppendLine($"\t{Name} är ej specificerad, och behandlas ej.\r\n");
 
             return sb.ToString();
         }

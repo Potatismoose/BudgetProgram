@@ -11,7 +11,7 @@
 
         public PercentageExpense()
         {
-            Name = "Procentuella utgifter";
+            Name = "Procentuella utgiften";
         }
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expenses)
         {
@@ -19,7 +19,7 @@
             sb.Append("Den procentuella utgiften ")
                 .Append(expenses.Key)
                 .Append(" på ")
-                .AppendFormat($"{expenses.Value*percentage}%")
+                .AppendFormat($"{expenses.Value * percentage}%")
                 .AppendLine(" gick inte att dra då det saknas pengar.");
 
             return sb.ToString();
@@ -28,7 +28,8 @@
         public string GetErrorMessageForNULL()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"{Name} är ej specificerat");
+            sb.AppendLine("\tFelmeddelande")
+            .AppendLine($"\t{Name} är ej specificerad, och behandlas ej.\r\n");
 
             return sb.ToString();
         }
