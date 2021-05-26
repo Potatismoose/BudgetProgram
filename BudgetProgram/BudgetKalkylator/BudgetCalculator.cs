@@ -42,8 +42,12 @@
         public decimal CalculateIncomes(Income incomes)
         {
             var totalIncomes = 0;
-            if (incomes == null)
+            
+            if (incomes == null || incomes.HouseholdIncomes == null)
             {
+                incomes = new Income();
+                incomes.HouseholdIncomes.Add("Inkomst", 0);
+                Logger.(incomes, incomes.HouseholdIncomes.First());
                 return 0;
             }
 
