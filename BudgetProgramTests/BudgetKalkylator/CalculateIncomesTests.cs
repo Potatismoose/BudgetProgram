@@ -1,10 +1,6 @@
 ﻿using NUnit.Framework;
-using BudgetProgram.BudgetKalkylator;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BudgetProgram.BudgetLists;
 
 namespace BudgetProgram.BudgetKalkylator.Tests
@@ -31,6 +27,21 @@ namespace BudgetProgram.BudgetKalkylator.Tests
 
             // Act
             decimal actual = calc.CalculateIncomes(balance, incomes);
+
+            // Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test()]
+        public void CalculateIncomesTest_2_NullIncome_Returns_Balance()
+        {
+            // Arrange 
+            decimal balance = 0;
+            var calc = new BudgetCalculator();
+
+            // Act
+            decimal actual = calc.CalculateIncomes(balance, null);
+            var expected = 0;
 
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
