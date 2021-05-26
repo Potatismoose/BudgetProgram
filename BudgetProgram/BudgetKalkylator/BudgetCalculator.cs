@@ -24,9 +24,16 @@
             {
                 return balance;
             }
-            foreach (var expense in expenses.HouseholdExpenses.Values)
+            foreach (var expense in expenses.HouseholdExpenses)
             {
-                balance -= expense;
+                if (balance - expense.Value < 0)
+                {
+                    Logger.LogErrorAndAddToReport(expenses, expense);
+                }
+                else
+                {
+                    balance -= expense.Value;
+                }
             }
 
             return balance;

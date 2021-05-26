@@ -10,6 +10,7 @@ namespace BudgetProgram.BudgetKalkylator.Tests
     {
         [TestCase(4500, 15500, TestName = "DeductExpensesTest_1_Values_ReturnsRest")]
         [TestCase(8000, 12000, TestName = "DeductExpensesTest_2_Values_ReturnsRest")]
+        [TestCase(21000, 20000, TestName = "DeductExpensesTest_3_Values_ReturnsRest")]
         public void DeductExpensesTest_01(Decimal value, Decimal expected)
         {
             // Arrange 
