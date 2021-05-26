@@ -50,6 +50,7 @@ namespace BudgetProgram.BudgetKalkylator
             if (incomes == null || incomes.HouseholdIncomes == null)
             {
                 incomes = new Income();
+                incomes.HouseholdIncomes = new Dictionary<string, decimal>();
                 incomes.HouseholdIncomes.Add("Inkomst", 0);
                 Logger.LogNullErrorAndAddToReport(incomes, incomes.HouseholdIncomes.First());
                 return balance;

@@ -41,7 +41,7 @@ namespace BudgetProgram.BudgetKalkylator.Tests
 
             // Act
             decimal actual = calc.CalculateIncomes(balance, null);
-            var expected = 0;
+            const decimal expected = 0;
 
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
