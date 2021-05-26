@@ -12,7 +12,7 @@ namespace BudgetProgram.BudgetKalkylator.Tests
     [TestFixture()]
     public class CalculateIncomesTests
     {
-        [TestCase(20000, 20000, TestName = "CalculateIncomes_Test_1_Values_ReturnsBalance")]
+        [TestCase(20000, 20000, TestName = "CalculateIncomes_Test_1_AddingIncomes_ReturnsBalance")]
         public void CalculateIncomesTest(Decimal value, Decimal expected)
         {
             // Arrange 
