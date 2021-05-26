@@ -21,6 +21,14 @@ namespace BudgetProgram.Interfaces
             File.AppendAllText(reportPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair).PadLeft(stringLength+PaddingForReportFileError));
         }
 
+        public static void LogNullErrorAndAddToReport(ILogable expenseOrIncome, KeyValuePair<string, decimal> keyValuePair)
+        {
+            File.AppendAllText(errorlogPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair));
+            LogReport(expenseOrIncome, keyValuePair);
+            var stringLength = expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair).Length;
+            File.AppendAllText(reportPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair).PadLeft(stringLength + PaddingForReportFileError));
+        }
+
         public static void LogReport(ILogable expenseOrIncome, KeyValuePair<string, decimal> keyValuePair)
         {
             StringBuilder sb = new StringBuilder();

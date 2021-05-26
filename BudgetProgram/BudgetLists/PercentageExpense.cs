@@ -5,9 +5,14 @@
     using System.Text;
     public class PercentageExpense : ILogable
     {
+        public string Name { get; set; }
         public Dictionary<string, decimal> HouseholdPercentageExpenses { get; set; }
         private const int percentage = 100;
 
+        public PercentageExpense()
+        {
+            Name = "Procentuella utgifter";
+        }
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expenses)
         {
             var sb = new StringBuilder();
@@ -16,6 +21,14 @@
                 .Append(" på ")
                 .AppendFormat($"{expenses.Value*percentage}%")
                 .AppendLine(" gick inte att dra då det saknas pengar.");
+
+            return sb.ToString();
+        }
+
+        public string GetErrorMessageForNULL()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"{Name} är ej specificerat");
 
             return sb.ToString();
         }

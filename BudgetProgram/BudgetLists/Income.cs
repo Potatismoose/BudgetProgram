@@ -6,6 +6,7 @@
 
     public class Income : ILogable
     {
+        public string Name { get; set; }
         public Dictionary<string, decimal> HouseholdIncomes { get; set; }
         /*
          * 
@@ -15,6 +16,11 @@
                 income.Remove(item.Key);
             }
         */
+
+        public Income()
+        {
+            Name = "Inkomster";
+        }
 
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> income)
         {
@@ -28,10 +34,10 @@
             return sb.ToString();
         }
 
-        public string GetErrorMessageForNULLIncome()
+        public string GetErrorMessageForNULL()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Inkomsten är ej specificerad");
+            sb.AppendLine($"{Name} är ej specificerat");
 
             return sb.ToString();
         }
