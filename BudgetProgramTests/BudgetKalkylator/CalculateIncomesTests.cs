@@ -14,12 +14,11 @@ namespace BudgetProgram.BudgetKalkylator.Tests
         /// </summary>
         /// <param name="value"></param>
         /// <param name="expected"></param>
-        [TestCase(20000, 21500, TestName = "CalculateIncomes_Test_1_AddingIncomes_ReturnsBalance")]
-        [TestCase(25000, 26500, TestName = "CalculateIncomes_Test_2_AddingIncomes_ReturnsBalance")]
+        [TestCase(20000, 20000, TestName = "CalculateIncomes_Test_1_AddingIncomes_ReturnsBalance")]
+        [TestCase(25000, 25000, TestName = "CalculateIncomes_Test_2_AddingIncomes_ReturnsBalance")]
         public void CalculateIncomesTest_1(Decimal value, Decimal expected)
         {
             // Arrange 
-            decimal balance = 1500;
             var incomes = new Income();
             incomes.HouseholdIncomes = new Dictionary<string, decimal>();
             incomes.HouseholdIncomes.Add("Lön", value);
@@ -36,12 +35,11 @@ namespace BudgetProgram.BudgetKalkylator.Tests
         public void CalculateIncomesTest_3_NullIncome_Returns_Balance()
         {
             // Arrange 
-            decimal balance = 1500;
             var calc = new BudgetCalculator();
 
             // Act
             decimal actual = calc.CalculateIncomes(null);
-            const decimal expected = 1500;
+            const decimal expected = 0;
 
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
@@ -51,7 +49,6 @@ namespace BudgetProgram.BudgetKalkylator.Tests
         public void CalculateIncomesTest_4_NegativeIncome_Returns_Balance()
         {
             // Arrange 
-            decimal balance = 1500;
             var incomes = new Income();
             incomes.HouseholdIncomes = new Dictionary<string, decimal>();
             incomes.HouseholdIncomes.Add("Lön", -1);
@@ -59,7 +56,7 @@ namespace BudgetProgram.BudgetKalkylator.Tests
 
             // Act
             decimal actual = calc.CalculateIncomes(incomes);
-            const decimal expected = 1500;
+            const decimal expected = 0;
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
