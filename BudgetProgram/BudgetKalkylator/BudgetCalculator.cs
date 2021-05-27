@@ -47,7 +47,7 @@ namespace BudgetProgram.BudgetKalkylator
 
         /// <summary>
         /// Adds incomes to balance and returns the new balance after its done.
-        /// If there are null errors or negative values the current balance is returned.
+        /// If there are null errors or negative values the current balance 0 is returned.
         /// </summary>
         /// <param name="balance"></param>
         /// <param name="incomes"></param>

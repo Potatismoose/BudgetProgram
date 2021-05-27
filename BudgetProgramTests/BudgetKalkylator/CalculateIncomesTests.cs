@@ -10,7 +10,7 @@ namespace BudgetProgram.BudgetKalkylator.Tests
     {
         /// <summary>
         /// Tests that the balance + income returns the new balance correctly.
-        /// The new Balance should be income + 1500.
+        /// The new Balance should be 0 + income.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="expected"></param>
@@ -30,9 +30,12 @@ namespace BudgetProgram.BudgetKalkylator.Tests
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
-
+        /// <summary>
+        /// Tests if the Dictionary is valid or null.
+        /// If the dictionary is null 0 is returned.
+        /// </summary>
         [Test()]
-        public void CalculateIncomesTest_3_NullIncome_Returns_Balance()
+        public void CalculateIncomesTest_3_Null_Income()
         {
             // Arrange 
             var calc = new BudgetCalculator();
@@ -44,9 +47,12 @@ namespace BudgetProgram.BudgetKalkylator.Tests
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
-
+        /// <summary>
+        /// Tests if the value is a negative income.
+        /// If the income is negative 0 is returned.
+        /// </summary>
         [Test()]
-        public void CalculateIncomesTest_4_NegativeIncome_Returns_Balance()
+        public void CalculateIncomesTest_4_Negative_Income()
         {
             // Arrange 
             var incomes = new Income();
