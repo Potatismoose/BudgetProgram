@@ -126,9 +126,10 @@ namespace BudgetProgram.BudgetKalkylator
             PercentageExpense percentageExpenses)
         {
             if (incomes == null) return 0;
-            decimal balance = incomes.HouseholdIncomes.Sum(i => i.Value);
+            decimal balance = CalculateIncomes(incomes);
             balance = DeductExpenses(balance, expenses);
-            return DeductPercentageExpenses(balance, percentageExpenses);
+            balance = DeductPercentageExpenses(balance, percentageExpenses);
+            return balance;
         }
     }
 }
