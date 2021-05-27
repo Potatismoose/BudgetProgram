@@ -56,6 +56,12 @@ namespace BudgetProgram.BudgetKalkylator
                 return balance;
             }
 
+            foreach (var income in incomes.HouseholdIncomes.Where(x => x.Value < 0))
+            {
+                Logger.LogErrorAndAddToReport(incomes as ILogable, income);
+                incomes.HouseholdIncomes.Remove(income.Key);
+            }
+
             foreach (var income in incomes.HouseholdIncomes)
             {
                 balance += income.Value;

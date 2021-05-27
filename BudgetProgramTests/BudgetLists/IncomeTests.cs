@@ -1,11 +1,6 @@
 ﻿using NUnit.Framework;
-using BudgetProgram.BudgetLists;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Globalization;
 
 namespace BudgetProgram.BudgetLists.Tests
 {
@@ -19,7 +14,7 @@ namespace BudgetProgram.BudgetLists.Tests
         {
             dictionary = new Dictionary<string, decimal>()
             {
-                { "Hyra", 6761}
+                { "Extraknäck", 6050}
             };
         }
 
@@ -29,14 +24,17 @@ namespace BudgetProgram.BudgetLists.Tests
             dictionary = null;
         }
 
+        /// <summary>
+        /// Testing so the returning string is containing "Extraknäck" and "6 050 kr"
+        /// </summary>
         [Test()]
         [SetCulture("sv-SE")]
-        public void GetErrorMessageForLogMethodTest_Hyra6761_ReturnsStringContainingHyra6761()
+        public void GetErrorMessageForLogMethodTest_Extraknäck6050_ReturnsStringContainingExtraknäck6050()
         {
             //Arrange
             var incomes = new Income();
             var keyValuePair = dictionary.First();
-            var expectedSum = "6\u00A0761,00 kr";
+            var expectedSum = "6\u00A0050,00 kr";
             //Act
             var actual = incomes.GetErrorMessageForLogMethod(keyValuePair);
             //Assert
@@ -45,6 +43,9 @@ namespace BudgetProgram.BudgetLists.Tests
             Assert.That(actual, Does.StartWith("\tFelmeddelande").IgnoreCase);
         }
 
+        /// <summary>
+        /// Testing so NULL dictionary returns the correct errormessage back containing "Felmeddelande" and "ej specificerad"
+        /// </summary>
         [Test()]
         [SetCulture("sv-SE")]
         public void GetErrorMessageForNULL_NULLDictionary_ReturnsStringContainingFelmeddelande()

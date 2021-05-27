@@ -28,6 +28,9 @@ namespace BudgetProgram.BudgetLists.Tests
             dictionary = null;
         }
 
+        /// <summary>
+        /// Testing so the re
+        /// </summary>
         [Test()]
         [SetCulture("sv-SE")]
         public void GetErrorMessageForLogMethodTest_Hyra6761_ReturnsStringContainingHyra6761()
@@ -44,6 +47,9 @@ namespace BudgetProgram.BudgetLists.Tests
             Assert.That(actual, Does.StartWith("\tFelmeddelande").IgnoreCase);
         }
 
+        /// <summary>
+        /// Testing so NULL dictionary returns the correct errormessage back containing "Felmeddelande" and "ej specificerad"
+        /// </summary>
         [Test()]
         [SetCulture("sv-SE")]
         public void GetErrorMessageForNULL_NULLDictionary_ReturnsStringContainingFelmeddelande()

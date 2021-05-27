@@ -8,14 +8,7 @@
     {
         public string Name { get; set; }
         public Dictionary<string, decimal> HouseholdIncomes { get; set; }
-        /*
-         * 
-          foreach (var item in income.Where(x => x.Value <= 0))
-            {
-                Logger.LogError(income as ILogable, item);
-                income.Remove(item.Key);
-            }
-        */
+
 
         public Income()
         {
