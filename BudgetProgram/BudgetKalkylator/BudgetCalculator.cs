@@ -45,8 +45,16 @@ namespace BudgetProgram.BudgetKalkylator
             return balance;
         }
 
-        public decimal CalculateIncomes(decimal balance, Income incomes)
+        /// <summary>
+        /// Adds incomes to balance and returns the new balance after its done.
+        /// If there are null errors or negative values the current balance is returned.
+        /// </summary>
+        /// <param name="balance"></param>
+        /// <param name="incomes"></param>
+        /// <returns>New balance if there are no null errors or negative numbers.</returns>
+        public decimal CalculateIncomes(Income incomes)
         {
+            decimal balance = 0;
             if (incomes == null || incomes.HouseholdIncomes == null)
             {
                 incomes = new Income();
@@ -66,6 +74,7 @@ namespace BudgetProgram.BudgetKalkylator
             {
                 balance += income.Value;
             }
+
             return balance;
         }
 
