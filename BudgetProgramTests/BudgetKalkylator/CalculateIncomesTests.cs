@@ -26,7 +26,7 @@ namespace BudgetProgram.BudgetKalkylator.Tests
             var calc = new BudgetCalculator();
 
             // Act
-            decimal actual = calc.CalculateIncomes(balance, incomes);
+            decimal actual = calc.CalculateIncomes(incomes);
 
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
@@ -40,7 +40,7 @@ namespace BudgetProgram.BudgetKalkylator.Tests
             var calc = new BudgetCalculator();
 
             // Act
-            decimal actual = calc.CalculateIncomes(balance, null);
+            decimal actual = calc.CalculateIncomes(null);
             const decimal expected = 1500;
 
             // Assert
@@ -58,7 +58,7 @@ namespace BudgetProgram.BudgetKalkylator.Tests
             var calc = new BudgetCalculator();
 
             // Act
-            decimal actual = calc.CalculateIncomes(balance, incomes);
+            decimal actual = calc.CalculateIncomes(incomes);
             const decimal expected = 1500;
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
