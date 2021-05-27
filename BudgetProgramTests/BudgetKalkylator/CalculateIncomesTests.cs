@@ -33,7 +33,7 @@ namespace BudgetProgram.BudgetKalkylator.Tests
         }
 
         [Test()]
-        public void CalculateIncomesTest_2_NullIncome_Returns_Balance()
+        public void CalculateIncomesTest_3_NullIncome_Returns_Balance()
         {
             // Arrange 
             decimal balance = 1500;
@@ -43,6 +43,23 @@ namespace BudgetProgram.BudgetKalkylator.Tests
             decimal actual = calc.CalculateIncomes(balance, null);
             const decimal expected = 1500;
 
+            // Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test()]
+        public void CalculateIncomesTest_4_NegativeIncome_Returns_Balance()
+        {
+            // Arrange 
+            decimal balance = 1500;
+            var incomes = new Income();
+            incomes.HouseholdIncomes = new Dictionary<string, decimal>();
+            incomes.HouseholdIncomes.Add("Lön", -1);
+            var calc = new BudgetCalculator();
+
+            // Act
+            decimal actual = calc.CalculateIncomes(balance, incomes);
+            const decimal expected = 1500;
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }

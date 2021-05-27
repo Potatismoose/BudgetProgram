@@ -60,7 +60,7 @@ namespace BudgetProgram.BudgetKalkylator.Tests
         }
 
         [Test()]
-        public void DeductExpensesTest_05_If_Expenses_Is_null_Return_Balance()
+        public void DeductExpensesTest_05()
         {
             // Arrange 
             var balance = 20000;
