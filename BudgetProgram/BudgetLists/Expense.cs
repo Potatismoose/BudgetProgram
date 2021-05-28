@@ -13,7 +13,11 @@
         {
             Name = "Utgiften";
         }
-
+        /// <summary>
+        ///  ToDo
+        /// </summary>
+        /// <param name="expense"></param>
+        /// <returns></returns>
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expense)
         {
             StringBuilder sb = new StringBuilder();
@@ -26,6 +30,10 @@
 
             return sb.ToString();
         }
+        /// <summary>
+        /// ToDo: Skriv kommentaren
+        /// </summary>
+        /// <returns></returns>
         public string GetErrorMessageForNull()
         {
             StringBuilder sb = new StringBuilder();

@@ -8,6 +8,10 @@ namespace Budget
     using BudgetProgram.BudgetLists;
     class Program
     {
+        /// <summary>
+        /// ToDo: Skriv kommentaren
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             BudgetCalculator bc = new();

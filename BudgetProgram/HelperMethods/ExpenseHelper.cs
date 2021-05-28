@@ -5,6 +5,11 @@
 
     public class ExpenseHelper
     {
+        /// <summary>
+        /// ToDo: Skriv kommentaren
+        /// </summary>
+        /// <param name="expenses"></param>
+        /// <returns></returns>
         public decimal TotalExpences(Dictionary<string, decimal> expenses)
         {
             decimal total = 0;

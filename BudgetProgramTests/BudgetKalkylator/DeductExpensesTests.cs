@@ -32,6 +32,7 @@
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
+
         /// <summary>
         /// Checks that nothing can be deducted without enough funds.
         /// If the test works 0 is returned.
@@ -54,6 +55,7 @@
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
+
         /// <summary>
         /// Checks if the expense dictionary is valid and not null.
         /// If it is invalid 20000 is returned.
@@ -72,6 +74,7 @@
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
+
         /// <summary>
         /// Checks if the expense is a negative number, if so 0 is returned.
         /// </summary>
@@ -91,6 +94,7 @@
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
+
         /// <summary>
         /// Tests if the expense is negative, if so 0 is returned.
         /// </summary>
