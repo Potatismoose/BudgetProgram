@@ -74,17 +74,18 @@ namespace BudgetProgram.BudgetKalkylator.Tests
         /// <summary>
         /// 
         /// </summary>
-        [Test()]
-        public void DeductExpensesTest_05_Negative_Expense() //ToDo fixa detta i calculator.
+        [TestCase(-10000, 0, TestName = "DeductExpensesTest_3_If_Negative_income_Return_0")]
+        public void DeductExpensesTest_05_Negative_Expense(decimal value, decimal expected) //ToDo fixa detta i calculator.
         {
             // Arrange 
-            var balance = 20000;
-            var calc = new BudgetCalculator();
+            var balance = 0;
             var expenses = new Expense();
+            expenses.HouseholdExpenses = new Dictionary<string, decimal>();
+            expenses.HouseholdExpenses.Add("hyra", value);
+            var calc = new BudgetCalculator();
 
             // Act
             decimal actual = calc.DeductExpenses(balance, expenses);
-            const decimal expected = 20000;
 
             // Assert
             Assert.That(actual, Is.EqualTo(expected));

@@ -30,6 +30,13 @@ namespace BudgetProgram.BudgetKalkylator
             {
                 return balance;
             }
+
+            foreach (var cost in expenses.HouseholdExpenses.Where(x => x.Value < 0))
+            {
+                Logger.LogErrorAndAddToReport(expenses as ILogable, cost);
+                expenses.HouseholdExpenses.Remove(cost.Key);
+               
+            }
             foreach (var expense in expenses.HouseholdExpenses)
             {
                 if (balance - expense.Value < 0)
@@ -43,6 +50,7 @@ namespace BudgetProgram.BudgetKalkylator
             }
 
             return balance;
+
         }
 
         /// <summary>
