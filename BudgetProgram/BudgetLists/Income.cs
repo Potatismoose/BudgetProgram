@@ -1,6 +1,6 @@
 ﻿namespace BudgetProgram.BudgetLists
 {
-    using BudgetProgram.Interfaces;
+    using Interfaces;
     using System.Collections.Generic;
     using System.Text;
 

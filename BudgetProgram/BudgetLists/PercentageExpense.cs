@@ -3,6 +3,7 @@
     using Interfaces;
     using System.Collections.Generic;
     using System.Text;
+
     public class PercentageExpense : ILogable
     {
         public string Name { get; set; }

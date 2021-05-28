@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using BudgetProgram.BudgetLists;
-
-namespace BudgetProgram.BudgetKalkylator.Tests
+﻿namespace BudgetProgram.BudgetKalkylator.Tests
 {
+    using BudgetLists;
+    using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Checks to see if deducting a expense works.
     /// If it works the remainder of the balance is returned.
@@ -72,10 +72,10 @@ namespace BudgetProgram.BudgetKalkylator.Tests
             Assert.That(actual, Is.EqualTo(expected));
         }
         /// <summary>
-        /// 
+        /// Checks if the expense is a negative number, if so 0 is returned.
         /// </summary>
         [TestCase(-10000, 0, TestName = "DeductExpensesTest_3_If_Negative_income_Return_0")]
-        public void DeductExpensesTest_05_Negative_Expense(decimal value, decimal expected) //ToDo fixa detta i calculator.
+        public void DeductExpensesTest_05_Negative_Expense(decimal value, decimal expected)
         {
             // Arrange 
             var balance = 0;
