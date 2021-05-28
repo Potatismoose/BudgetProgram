@@ -37,7 +37,7 @@
         /// </summary>
         /// <param name="value"></param>
         /// <param name="expected"></param>
-        [TestCase(10000, 0, TestName = "DeductExpensesTest_3_If_Balance_0_Return_0")]
+        [TestCase(10000, 0, TestName = "DeductExpensesTest_4_If_Balance_0_Return_0")]
         public void DeductExpensesTest_02(Decimal value, Decimal expected)
         {
             // Arrange 
@@ -58,7 +58,7 @@
         /// If it is invalid 20000 is returned.
         /// </summary>
         [Test()]
-        public void DeductExpensesTest_04_If_Expenses_Is_Null_return_Balance()
+        public void DeductExpensesTest_05_If_Expenses_Is_Null_return_Balance()
         {
             // Arrange 
             var balance = 20000;
@@ -74,8 +74,29 @@
         /// <summary>
         /// Checks if the expense is a negative number, if so 0 is returned.
         /// </summary>
-        [TestCase(-10000, 0, TestName = "DeductExpensesTest_3_If_Negative_income_Return_0")]
-        public void DeductExpensesTest_05_Negative_Expense(decimal value, decimal expected)
+        [TestCase(-10000, 0, TestName = "DeductExpensesTest_6_If_Negative_income_Return_0")]
+        public void DeductExpensesTest_06_Negative_Expense(decimal value, decimal expected)
+        {
+            // Arrange 
+            var balance = 0;
+            var expenses = new Expense();
+            expenses.HouseholdExpenses = new Dictionary<string, decimal>();
+            expenses.HouseholdExpenses.Add("hyra", value);
+            var calc = new BudgetCalculator();
+
+            // Act
+            decimal actual = calc.DeductExpenses(balance, expenses);
+
+            // Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+        /// <summary>
+        /// Tests if the expense is negative, if so 0 is returned.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="expected"></param>
+        [TestCase(21000, 0, TestName = "DeductExpensesTest_7_If_Expense_>_Balance_Return_0")]
+        public void DeductExpensesTest_07(Decimal value, Decimal expected)
         {
             // Arrange 
             var balance = 0;
