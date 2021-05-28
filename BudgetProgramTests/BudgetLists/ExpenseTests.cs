@@ -1,22 +1,19 @@
-﻿using NUnit.Framework;
-using BudgetProgram.BudgetLists;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BudgetProgram.BudgetLists.Tests
+﻿namespace BudgetProgramTests.BudgetLists
 {
+    using BudgetProgram.BudgetLists;
+    using NUnit.Framework;
+    using System.Collections.Generic;
+    using System.Linq;
+
     [TestFixture()]
     public class ExpenseTests
     {
-        private static Dictionary<string, decimal> dictionary;
+        private static Dictionary<string, decimal> _dictionary;
 
         [SetUp]
         public void Setup()
         {
-            dictionary = new Dictionary<string, decimal>()
+            _dictionary = new Dictionary<string, decimal>()
             {
                 { "Hyra", 5005}
             };
@@ -25,7 +22,7 @@ namespace BudgetProgram.BudgetLists.Tests
         [TearDown]
         public void TearDown()
         {
-            dictionary = null;
+            _dictionary = null;
         }
 
         /// <summary>
@@ -37,7 +34,7 @@ namespace BudgetProgram.BudgetLists.Tests
         {
             //Arrange
             var expenses = new Expense();
-            var keyValuePair = dictionary.First();
+            var keyValuePair = _dictionary.First();
             var expectedSum = "5\u00A0005,00 kr";
             //Act
             var actual = expenses.GetErrorMessageForLogMethod(keyValuePair);
@@ -48,7 +45,7 @@ namespace BudgetProgram.BudgetLists.Tests
         }
 
         /// <summary>
-        /// Testing so NULL dictionary returns the correct errormessage back containing "Felmeddelande" and "ej specificerad"
+        /// Testing so NULL _dictionary returns the correct errormessage back containing "Felmeddelande" and "ej specificerad"
         /// </summary>
         [Test()]
         [SetCulture("sv-SE")]

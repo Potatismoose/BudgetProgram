@@ -1,11 +1,11 @@
-﻿using BudgetProgram.BudgetLists;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
-namespace BudgetProgram.Interfaces
+﻿namespace BudgetProgram.Interfaces
 {
+    using BudgetLists;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+
     public static class Logger
     {
         private const int percentage = 100;
@@ -18,7 +18,7 @@ namespace BudgetProgram.Interfaces
             File.AppendAllText(errorlogPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair));
             LogReport(expenseOrIncome, keyValuePair);
             var stringLength = expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair).Length;
-            File.AppendAllText(reportPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair).PadLeft(stringLength+PaddingForReportFileError));
+            File.AppendAllText(reportPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair).PadLeft(stringLength + PaddingForReportFileError));
         }
 
         public static void LogNullErrorAndAddToReport(ILogable expenseOrIncome, KeyValuePair<string, decimal> keyValuePair)

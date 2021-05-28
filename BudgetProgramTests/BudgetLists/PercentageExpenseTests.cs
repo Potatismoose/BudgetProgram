@@ -1,23 +1,21 @@
-﻿using NUnit.Framework;
-using BudgetProgram.BudgetLists;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BudgetProgram.BudgetLists.Tests
+﻿namespace BudgetProgramTests.BudgetLists
 {
+    using BudgetProgram.BudgetLists;
+    using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     [TestFixture()]
     public class PercentageExpenseTests
     {
-        private static Dictionary<string, decimal> dictionary;
+        private static Dictionary<string, decimal> _dictionary;
         private const int Percentage = 100;
 
         [SetUp]
         public void Setup()
         {
-            dictionary = new Dictionary<string, decimal>()
+            _dictionary = new Dictionary<string, decimal>()
             {
                 { "Sparande", 0.9m}
             };
@@ -26,7 +24,7 @@ namespace BudgetProgram.BudgetLists.Tests
         [TearDown]
         public void TearDown()
         {
-            dictionary = null;
+            _dictionary = null;
         }
 
         /// <summary>
@@ -38,7 +36,7 @@ namespace BudgetProgram.BudgetLists.Tests
         {
             //Arrange
             var percentageexpense = new PercentageExpense();
-            var keyValuePair = dictionary.First();
+            var keyValuePair = _dictionary.First();
             var expectedSum = Convert.ToString(keyValuePair.Value * Percentage);
             //Act
             var actual = percentageexpense.GetErrorMessageForLogMethod(keyValuePair);
@@ -49,7 +47,7 @@ namespace BudgetProgram.BudgetLists.Tests
         }
 
         /// <summary>
-        /// Testing so NULL dictionary returns the correct errormessage back containing "Felmeddelande" and "ej specificerad"
+        /// Testing so NULL _dictionary returns the correct errormessage back containing "Felmeddelande" and "ej specificerad"
         /// </summary>
         [Test()]
         [SetCulture("sv-SE")]
