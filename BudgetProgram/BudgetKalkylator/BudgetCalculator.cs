@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace BudgetProgram.BudgetKalkylator
+﻿namespace BudgetProgram.BudgetKalkylator
 {
     using BudgetLists;
     using Interfaces;
+    using System.Collections.Generic;
     using System.Linq;
     using static HelperMethods.ExpenseHelper;
 
@@ -35,7 +34,7 @@ namespace BudgetProgram.BudgetKalkylator
             {
                 Logger.LogErrorAndAddToReport(expenses as ILogable, cost);
                 expenses.HouseholdExpenses.Remove(cost.Key);
-               
+
             }
 
             foreach (var expense in expenses.HouseholdExpenses)

@@ -1,9 +1,9 @@
-﻿using BudgetProgram.Interfaces;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BudgetProgram.BudgetLists
+﻿namespace BudgetProgram.BudgetLists
 {
+    using Interfaces;
+    using System.Collections.Generic;
+    using System.Text;
+
     public class Expense : ILogable
     {
         public string Name { get; set; }

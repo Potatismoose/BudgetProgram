@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using BudgetProgram.BudgetLists;
-
-namespace BudgetProgram.BudgetKalkylator.Tests
+﻿namespace BudgetProgram.BudgetKalkylator.Tests
 {
+    using BudgetLists;
+    using NUnit.Framework;
+    using System;
+    using System.Collections.Generic;
+
     [TestFixture()]
     public class CalculateIncomesTests
     {
