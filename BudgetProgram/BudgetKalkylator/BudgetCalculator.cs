@@ -25,6 +25,7 @@
                 Logger.LogNullErrorAndAddToReport(expenses, expenses.HouseholdExpenses.First());
                 return balance;
             }
+
             if (balance == 0)
             {
                 return balance;

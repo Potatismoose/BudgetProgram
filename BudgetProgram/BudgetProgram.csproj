@@ -10,4 +10,8 @@
     <None Remove="Mockdata\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="IronXL.Excel" Version="2020.12.2" />
+  </ItemGroup>
+
 </Project>

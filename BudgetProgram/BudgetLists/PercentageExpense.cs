@@ -18,11 +18,11 @@
         {
             var sb = new StringBuilder();
             sb.AppendLine("\tFelmeddelande")
-                .Append("Den procentuella utgiften ")
+                .Append("\tDen procentuella utgiften ")
                 .Append(expenses.Key)
                 .Append(" på ")
                 .AppendFormat($"{expenses.Value * percentage}%")
-                .AppendLine(" gick inte att dra då det saknas pengar.");
+                .AppendLine(" gick inte att dra då det saknas pengar.\r\n");
 
             return sb.ToString();
         }
