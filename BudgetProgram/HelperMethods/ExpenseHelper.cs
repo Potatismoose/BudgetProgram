@@ -66,10 +66,5 @@
             return Math.Abs(totalProcentage) + Math.Abs(value) <= 1;
         }
 
-        public string SendErrorMessageToLogMethod()
-        {
-            //TODO: Implement this method
-            return "";
-        }
     }
 }

@@ -8,7 +8,7 @@
     {
         public string Name { get; set; }
         public Dictionary<string, decimal> HouseholdPercentageExpenses { get; set; }
-        private const int percentage = 100;
+        private const int Percentage = 100;
 
         public PercentageExpense()
         {
@@ -21,13 +21,13 @@
                 .Append("\tDen procentuella utgiften ")
                 .Append(expenses.Key)
                 .Append(" på ")
-                .AppendFormat($"{expenses.Value * percentage}%")
+                .AppendFormat($"{expenses.Value * Percentage}%")
                 .AppendLine(" gick inte att dra då det saknas pengar.\r\n");
 
             return sb.ToString();
         }
 
-        public string GetErrorMessageForNULL()
+        public string GetErrorMessageForNull()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("\tFelmeddelande")

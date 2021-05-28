@@ -9,7 +9,6 @@
         public string Name { get; set; }
         public Dictionary<string, decimal> HouseholdIncomes { get; set; }
 
-
         public Income()
         {
             Name = "Inkomsten";
@@ -28,7 +27,7 @@
             return sb.ToString();
         }
 
-        public string GetErrorMessageForNULL()
+        public string GetErrorMessageForNull()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("\tFelmeddelande")

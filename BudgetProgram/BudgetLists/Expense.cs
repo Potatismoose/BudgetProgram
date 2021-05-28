@@ -16,7 +16,6 @@
 
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expense)
         {
-
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("\tFelmeddelande")
                 .Append("\tUtgiften ")
@@ -27,7 +26,7 @@
 
             return sb.ToString();
         }
-        public string GetErrorMessageForNULL()
+        public string GetErrorMessageForNull()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("\tFelmeddelande")
