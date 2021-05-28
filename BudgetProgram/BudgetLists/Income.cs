@@ -19,7 +19,7 @@
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("\tFelmeddelande")
-                .Append("Inkomsten ")
+                .Append("\tInkomsten ")
                 .Append(income.Key)
                 .Append(" på ")
                 .AppendFormat("{0:C}", income.Value)

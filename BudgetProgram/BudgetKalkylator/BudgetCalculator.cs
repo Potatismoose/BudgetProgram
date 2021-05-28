@@ -1,6 +1,7 @@
 ﻿namespace BudgetProgram.BudgetKalkylator
 {
     using BudgetLists;
+    using HelperMethods;
     using Interfaces;
     using System.Collections.Generic;
     using System.Linq;
@@ -22,7 +23,7 @@
                 expenses = new Expense();
                 expenses.HouseholdExpenses = new Dictionary<string, decimal>();
                 expenses.HouseholdExpenses.Add("Utgift", 0);
-                Logger.LogNullErrorAndAddToReport(expenses, expenses.HouseholdExpenses.First());
+                Logger.LogNullError(expenses, expenses.HouseholdExpenses.First());
                 return balance;
             }
 
@@ -33,7 +34,7 @@
 
             foreach (var cost in expenses.HouseholdExpenses.Where(x => x.Value < 0))
             {
-                Logger.LogErrorAndAddToReport(expenses as ILogable, cost);
+                Logger.LogError(expenses as ILogable, cost);
                 expenses.HouseholdExpenses.Remove(cost.Key);
 
             }
@@ -42,11 +43,14 @@
             {
                 if (balance - expense.Value < 0)
                 {
-                    Logger.LogErrorAndAddToReport(expenses, expense);
+                    var temp = new KeyValuePair<string, decimal>(expense.Key, 0);
+                    Logger.LogReport(expenses, temp);
+                    Logger.LogError(expenses, expense);
                 }
                 else
                 {
                     balance -= expense.Value;
+                    Logger.LogReport(expenses, expense);
                 }
             }
 
@@ -69,19 +73,23 @@
                 incomes = new Income();
                 incomes.HouseholdIncomes = new Dictionary<string, decimal>();
                 incomes.HouseholdIncomes.Add("Inkomst", 0);
-                Logger.LogNullErrorAndAddToReport(incomes, incomes.HouseholdIncomes.First());
+                Logger.LogNullError(incomes, incomes.HouseholdIncomes.First());
                 return balance;
             }
 
             foreach (var income in incomes.HouseholdIncomes.Where(x => x.Value < 0))
             {
-                Logger.LogErrorAndAddToReport(incomes as ILogable, income);
+                var temp = new KeyValuePair<string, decimal>(income.Key, 0);
+                Logger.LogReport(incomes, temp);
+                Logger.LogError(incomes, income);
+
                 incomes.HouseholdIncomes.Remove(income.Key);
             }
 
             foreach (var income in incomes.HouseholdIncomes)
             {
                 balance += income.Value;
+                Logger.LogReport(incomes, income);
             }
 
             return balance;
@@ -112,7 +120,9 @@
                 }
                 else
                 {
-                    Logger.LogErrorAndAddToReport(p, expense);
+                    var temp = new KeyValuePair<string, decimal>(expense.Key, 0);
+                    Logger.LogReport(p, temp);
+                    Logger.LogError(p, expense);
                 }
             }
 
@@ -124,6 +134,7 @@
         /// utgifter. Kollar så att inkomsterna inte är null
         /// och sedan räknas saldot som blir över
         /// ut efter att alla möjliga avdrag är gjorda.
+        /// Loggar till loggfilen så att allt kommer in och står på korrekt ställe.
         /// </summary>
         /// <param name="incomes">Ett lexikon över inkomsterna.</param>
         /// <param name="expenses">Ett lexikon över utgifterna.</param>
@@ -134,10 +145,21 @@
             Expense expenses,
             PercentageExpense percentageExpenses)
         {
+            Logger.ClearFile();
             if (incomes == null) return 0;
+            Logger.PrintHeader("Inkomster");
             decimal balance = CalculateIncomes(incomes);
+            Logger.LogTotal(balance);
+            Logger.PrintHeader("Utgifter");
+            var tempBalance = balance;
             balance = DeductExpenses(balance, expenses);
+            Logger.LogTotal(tempBalance - balance);
+            Logger.PrintHeader("Procentuella utgifter");
+            tempBalance = balance;
             balance = DeductPercentageExpenses(balance, percentageExpenses);
+            Logger.LogTotal(tempBalance - balance);
+            Logger.PrintHeader("Resultat");
+            Logger.LogBalance(balance);
             return balance;
         }
     }
