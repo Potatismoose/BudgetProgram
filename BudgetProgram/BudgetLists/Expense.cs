@@ -19,11 +19,11 @@ namespace BudgetProgram.BudgetLists
 
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("\tFelmeddelande")
-                .Append("Utgiften ")
+                .Append("\tUtgiften ")
                 .Append(expense.Key)
                 .Append(" på ")
                 .AppendFormat("{0:C}", expense.Value)
-                .AppendLine(" gick inte att dra då det saknas pengar.");
+                .AppendLine(" gick inte att dra då det saknas pengar.\r\n");
 
             return sb.ToString();
         }

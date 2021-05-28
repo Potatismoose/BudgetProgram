@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
+
 namespace BudgetProgram.Interfaces
 {
     public static class Logger
