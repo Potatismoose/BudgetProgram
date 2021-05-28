@@ -31,6 +31,13 @@ namespace BudgetProgram.BudgetKalkylator
             {
                 return balance;
             }
+
+            foreach (var cost in expenses.HouseholdExpenses.Where(x => x.Value < 0))
+            {
+                Logger.LogErrorAndAddToReport(expenses as ILogable, cost);
+                expenses.HouseholdExpenses.Remove(cost.Key);
+               
+            }
             foreach (var expense in expenses.HouseholdExpenses)
             {
                 if (balance - expense.Value < 0)
@@ -44,10 +51,19 @@ namespace BudgetProgram.BudgetKalkylator
             }
 
             return balance;
+
         }
 
-        public decimal CalculateIncomes(decimal balance, Income incomes)
+        /// <summary>
+        /// Adds incomes to balance and returns the new balance after its done.
+        /// If there are null errors or negative values the current balance 0 is returned.
+        /// </summary>
+        /// <param name="balance"></param>
+        /// <param name="incomes"></param>
+        /// <returns>New balance if there are no null errors or negative numbers.</returns>
+        public decimal CalculateIncomes(Income incomes)
         {
+            decimal balance = 0;
             if (incomes == null || incomes.HouseholdIncomes == null)
             {
                 incomes = new Income();
@@ -67,6 +83,7 @@ namespace BudgetProgram.BudgetKalkylator
             {
                 balance += income.Value;
             }
+
             return balance;
         }
 
@@ -118,9 +135,10 @@ namespace BudgetProgram.BudgetKalkylator
             PercentageExpense percentageExpenses)
         {
             if (incomes == null) return 0;
-            decimal balance = incomes.HouseholdIncomes.Sum(i => i.Value);
+            decimal balance = CalculateIncomes(incomes);
             balance = DeductExpenses(balance, expenses);
-            return DeductPercentageExpenses(balance, percentageExpenses);
+            balance = DeductPercentageExpenses(balance, percentageExpenses);
+            return balance;
         }
     }
 }

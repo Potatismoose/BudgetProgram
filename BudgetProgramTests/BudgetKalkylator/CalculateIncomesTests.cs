@@ -10,39 +10,59 @@ namespace BudgetProgram.BudgetKalkylator.Tests
     {
         /// <summary>
         /// Tests that the balance + income returns the new balance correctly.
-        /// The new Balance should be income + 1500.
+        /// The new Balance should be 0 + income.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="expected"></param>
-        [TestCase(20000, 21500, TestName = "CalculateIncomes_Test_1_AddingIncomes_ReturnsBalance")]
-        [TestCase(25000, 26500, TestName = "CalculateIncomes_Test_2_AddingIncomes_ReturnsBalance")]
+        [TestCase(20000, 20000, TestName = "CalculateIncomes_Test_1_AddingIncomes_ReturnsBalance")]
+        [TestCase(25000, 25000, TestName = "CalculateIncomes_Test_2_AddingIncomes_ReturnsBalance")]
         public void CalculateIncomesTest_1(Decimal value, Decimal expected)
         {
             // Arrange 
-            decimal balance = 1500;
             var incomes = new Income();
             incomes.HouseholdIncomes = new Dictionary<string, decimal>();
             incomes.HouseholdIncomes.Add("Lön", value);
             var calc = new BudgetCalculator();
 
             // Act
-            decimal actual = calc.CalculateIncomes(balance, incomes);
+            decimal actual = calc.CalculateIncomes(incomes);
 
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
-
+        /// <summary>
+        /// Tests if the Dictionary is valid or null.
+        /// If the dictionary is null 0 is returned.
+        /// </summary>
         [Test()]
-        public void CalculateIncomesTest_2_NullIncome_Returns_Balance()
+        public void CalculateIncomesTest_3_Null_Income()
         {
             // Arrange 
-            decimal balance = 1500;
             var calc = new BudgetCalculator();
 
             // Act
-            decimal actual = calc.CalculateIncomes(balance, null);
-            const decimal expected = 1500;
+            decimal actual = calc.CalculateIncomes(null);
+            const decimal expected = 0;
 
+            // Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+        /// <summary>
+        /// Tests if the value is a negative income.
+        /// If the income is negative 0 is returned.
+        /// </summary>
+        [Test()]
+        public void CalculateIncomesTest_4_Negative_Income()
+        {
+            // Arrange 
+            var incomes = new Income();
+            incomes.HouseholdIncomes = new Dictionary<string, decimal>();
+            incomes.HouseholdIncomes.Add("Lön", -1);
+            var calc = new BudgetCalculator();
+
+            // Act
+            decimal actual = calc.CalculateIncomes(incomes);
+            const decimal expected = 0;
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
