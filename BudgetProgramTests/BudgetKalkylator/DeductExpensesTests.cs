@@ -72,10 +72,10 @@
             Assert.That(actual, Is.EqualTo(expected));
         }
         /// <summary>
-        /// 
+        /// Checks if the expense is a negative number, if so 0 is returned.
         /// </summary>
         [TestCase(-10000, 0, TestName = "DeductExpensesTest_3_If_Negative_income_Return_0")]
-        public void DeductExpensesTest_05_Negative_Expense(decimal value, decimal expected) //ToDo fixa detta i calculator.
+        public void DeductExpensesTest_05_Negative_Expense(decimal value, decimal expected)
         {
             // Arrange 
             var balance = 0;
