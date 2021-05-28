@@ -96,7 +96,7 @@
             File.AppendAllText(ReportPath, sb.ToString());
         }
         /// <summary>
-        /// 
+        /// Logs the total sum of expenses to logfile when everything is payed.
         /// </summary>
         /// <param name="balance"></param>
         internal static void LogTotal(decimal balance)
