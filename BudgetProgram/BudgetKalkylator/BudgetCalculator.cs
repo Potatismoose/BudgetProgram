@@ -107,7 +107,10 @@
         /// <returns>the new changed balance.</returns>
         public decimal DeductPercentageExpenses(decimal balance, PercentageExpense p)
         {
-            if (balance <= 0 || p == null) return balance;
+            if (balance <= 0 || p == null)
+            {
+                return balance;
+            }
             decimal tempBalance = balance;
             var totalPercentage = 0.0M;
             p.HouseholdPercentageExpenses = SetDefaultKey(p.HouseholdPercentageExpenses);
@@ -149,7 +152,11 @@
             PercentageExpense percentageExpenses)
         {
             Logger.ClearFile();
-            if (incomes == null) return 0;
+            if (incomes == null)
+            {
+                return 0;
+            }
+
             Logger.PrintHeader("Inkomster");
             decimal balance = CalculateIncomes(incomes);
             Logger.LogTotal(balance);

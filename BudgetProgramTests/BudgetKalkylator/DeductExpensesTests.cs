@@ -20,9 +20,11 @@
         public void DeductExpensesTest_1(Decimal value, Decimal expected)
         {
             // Arrange 
-            var balance = 20000;
-            var expenses = new Expense();
-            expenses.HouseholdExpenses = new Dictionary<string, decimal>();
+            const decimal balance = 20000;
+            var expenses = new Expense
+            {
+                HouseholdExpenses = new Dictionary<string, decimal>()
+            };
             expenses.HouseholdExpenses.Add("hyra", value);
             var calc = new BudgetCalculator();
 
@@ -43,9 +45,11 @@
         public void DeductExpensesTest_02(Decimal value, Decimal expected)
         {
             // Arrange 
-            var balance = 0;
-            var expenses = new Expense();
-            expenses.HouseholdExpenses = new Dictionary<string, decimal>();
+            const decimal balance = 0;
+            var expenses = new Expense
+            {
+                HouseholdExpenses = new Dictionary<string, decimal>()
+            };
             expenses.HouseholdExpenses.Add("hyra", value);
             var calc = new BudgetCalculator();
 
@@ -64,7 +68,7 @@
         public void DeductExpensesTest_5_ExpensesIsNull_ReturnBalance()
         {
             // Arrange 
-            var balance = 20000;
+            const decimal balance = 20000;
             var calc = new BudgetCalculator();
 
             // Act
@@ -82,9 +86,11 @@
         public void DeductExpensesTest_06_Negative_Expense(decimal value, decimal expected)
         {
             // Arrange 
-            var balance = 0;
-            var expenses = new Expense();
-            expenses.HouseholdExpenses = new Dictionary<string, decimal>();
+            const decimal balance = 0;
+            var expenses = new Expense
+            {
+                HouseholdExpenses = new Dictionary<string, decimal>()
+            };
             expenses.HouseholdExpenses.Add("hyra", value);
             var calc = new BudgetCalculator();
 
@@ -104,9 +110,11 @@
         public void DeductExpensesTest7(Decimal value, Decimal expected)
         {
             // Arrange 
-            var balance = 0;
-            var expenses = new Expense();
-            expenses.HouseholdExpenses = new Dictionary<string, decimal>();
+            const decimal balance = 0;
+            var expenses = new Expense
+            {
+                HouseholdExpenses = new Dictionary<string, decimal>()
+            };
             expenses.HouseholdExpenses.Add("hyra", value);
             var calc = new BudgetCalculator();
 

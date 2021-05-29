@@ -16,7 +16,11 @@
         public decimal TotalExpences(Dictionary<string, decimal> expenses)
         {
             decimal total = 0;
-            if (expenses == null) return total;
+            if (expenses == null)
+            {
+                return total;
+            }
+
             foreach (decimal item in expenses.Values)
             {
                 total += item;
@@ -31,7 +35,11 @@
         public static Dictionary<string, decimal> GetAbsoluteValue(Dictionary<string, decimal> expenses)
         {
             var dictionary = new Dictionary<string, decimal>();
-            if (expenses == null) return dictionary;
+            if (expenses == null)
+            {
+                return dictionary;
+            }
+
             foreach ((string key, decimal value) in expenses)
             {
                 dictionary.Add(key, Math.Abs(value));
@@ -50,7 +58,11 @@
         {
             var counter = 1;
             var dictionary = new Dictionary<string, decimal>();
-            if (expenses == null) return dictionary;
+            if (expenses == null)
+            {
+                return dictionary;
+            }
+
             foreach ((string key, decimal value) in expenses)
             {
                 dictionary.Add(string.IsNullOrEmpty(key)
