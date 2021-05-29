@@ -9,12 +9,15 @@
         public string Name { get; set; }
         public Dictionary<string, decimal> HouseholdIncomes { get; set; }
 
-
         public Income()
         {
             Name = "Inkomsten";
         }
-
+        /// <summary>
+        /// ToDo
+        /// </summary>
+        /// <param name="income"></param>
+        /// <returns></returns>
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> income)
         {
             StringBuilder sb = new StringBuilder();
@@ -27,8 +30,11 @@
 
             return sb.ToString();
         }
-
-        public string GetErrorMessageForNULL()
+        /// <summary>
+        /// ToDo: Skriv kommentaren
+        /// </summary>
+        /// <returns></returns>
+        public string GetErrorMessageForNull()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("\tFelmeddelande")

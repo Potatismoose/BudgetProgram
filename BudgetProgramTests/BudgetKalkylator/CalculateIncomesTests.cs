@@ -1,6 +1,7 @@
-﻿namespace BudgetProgram.BudgetKalkylator.Tests
+﻿namespace BudgetProgramTests.BudgetKalkylator
 {
-    using BudgetLists;
+    using BudgetProgram.BudgetKalkylator;
+    using BudgetProgram.BudgetLists;
     using NUnit.Framework;
     using System;
     using System.Collections.Generic;
@@ -68,6 +69,6 @@
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
-        
+
     }
 }

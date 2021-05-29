@@ -56,7 +56,7 @@
             var expected = "Felmeddelande";
             var expected2 = "ej specificerad";
             //Act
-            var actual = expenses.GetErrorMessageForNULL();
+            var actual = expenses.GetErrorMessageForNull();
             //Assert
             Assert.That(actual, Does.Contain(expected));
             Assert.That(actual, Does.Contain(expected2));

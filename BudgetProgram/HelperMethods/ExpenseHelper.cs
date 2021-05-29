@@ -5,6 +5,11 @@
 
     public class ExpenseHelper
     {
+        /// <summary>
+        /// ToDo: Skriv kommentaren
+        /// </summary>
+        /// <param name="expenses"></param>
+        /// <returns></returns>
         public decimal TotalExpences(Dictionary<string, decimal> expenses)
         {
             decimal total = 0;
@@ -66,10 +71,5 @@
             return Math.Abs(totalProcentage) + Math.Abs(value) <= 1;
         }
 
-        public string SendErrorMessageToLogMethod()
-        {
-            //TODO: Implement this method
-            return "";
-        }
     }
 }

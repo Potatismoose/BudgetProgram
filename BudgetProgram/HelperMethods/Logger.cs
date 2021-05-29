@@ -12,11 +12,11 @@
         /// <summary>
         /// Sets some values needed for creating the report.
         /// </summary>
-        private const int percentage = 100;
+        private const int Percentage = 100;
         private const int PaddingForReportFile = 30;
         private const int PaddingForReportFileError = 4;
-        readonly private static string errorlogPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\errorlog {DateTime.Now.ToShortDateString()}.txt";
-        readonly private static string reportPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\report.txt";
+        readonly private static string ErrorlogPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\errorlog {DateTime.Now.ToShortDateString()}.txt";
+        readonly private static string ReportPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\report.txt";
 
         /// <summary>
         /// Logs error to reportfile and error file.
@@ -25,9 +25,9 @@
         /// <param name="keyValuePair"></param>
         public static void LogError(ILogable expenseOrIncome, KeyValuePair<string, decimal> keyValuePair)
         {
-            File.AppendAllText(errorlogPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair));
+            File.AppendAllText(ErrorlogPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair));
             var stringLength = expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair).Length;
-            File.AppendAllText(reportPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair).PadLeft(stringLength + PaddingForReportFileError));
+            File.AppendAllText(ReportPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair).PadLeft(stringLength + PaddingForReportFileError));
         }
 
         /// <summary>
@@ -37,9 +37,9 @@
         /// <param name="keyValuePair"></param>
         public static void LogNullError(ILogable expenseOrIncome, KeyValuePair<string, decimal> keyValuePair)
         {
-            File.AppendAllText(errorlogPath, expenseOrIncome.GetErrorMessageForNULL());
-            var stringLength = expenseOrIncome.GetErrorMessageForNULL().Length;
-            File.AppendAllText(reportPath, expenseOrIncome.GetErrorMessageForNULL().PadLeft(stringLength + PaddingForReportFileError));
+            File.AppendAllText(ErrorlogPath, expenseOrIncome.GetErrorMessageForNull());
+            var stringLength = expenseOrIncome.GetErrorMessageForNull().Length;
+            File.AppendAllText(ReportPath, expenseOrIncome.GetErrorMessageForNull().PadLeft(stringLength + PaddingForReportFileError));
         }
 
         /// <summary>
@@ -53,15 +53,16 @@
             sb.Append(keyValuePair.Key.PadRight(PaddingForReportFile));
             if (expenseOrIncome is PercentageExpense)
             {
-                sb.Append((keyValuePair.Value * percentage).ToString());
+                sb.Append((keyValuePair.Value * Percentage).ToString());
                 sb.AppendLine("%");
             }
             else
             {
                 sb.AppendFormat("{0:C}\r\n", keyValuePair.Value);
             }
-            File.AppendAllText(reportPath, sb.ToString());
+            File.AppendAllText(ReportPath, sb.ToString());
         }
+
         /// <summary>
         /// Prints the headers in the reportfile
         /// </summary>
@@ -71,7 +72,7 @@
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(new string('-', 45));
             sb.AppendLine(header);
-            File.AppendAllText(reportPath, sb.ToString().ToUpper());
+            File.AppendAllText(ReportPath, sb.ToString().ToUpper());
         }
 
         /// <summary>
@@ -79,7 +80,7 @@
         /// </summary>
         public static void ClearFile()
         {
-            File.WriteAllText(reportPath, string.Empty);
+            File.WriteAllText(ReportPath, string.Empty);
         }
 
         /// <summary>
@@ -92,16 +93,19 @@
             sb.Append("\r\nDitt saldo efter avdragna utgifter: ")
                 .AppendFormat("{0:C}", balance);
 
-            File.AppendAllText(reportPath, sb.ToString());
+            File.AppendAllText(ReportPath, sb.ToString());
         }
-
+        /// <summary>
+        /// Logs the total sum of expenses to logfile when everything is payed.
+        /// </summary>
+        /// <param name="balance"></param>
         internal static void LogTotal(decimal balance)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("\r\nTotalt: ")
                 .AppendFormat("{0:C}\r\n", balance);
 
-            File.AppendAllText(reportPath, sb.ToString());
+            File.AppendAllText(ReportPath, sb.ToString());
         }
     }
 }
