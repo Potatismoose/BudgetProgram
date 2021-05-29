@@ -4,6 +4,9 @@
     using System.Collections.Generic;
     using System.Text;
 
+    /// <summary>
+    /// Percentageexpense class contains dictionary with percentage expeses.
+    /// </summary>
     public class PercentageExpense : ILogable
     {
         /// <summary>

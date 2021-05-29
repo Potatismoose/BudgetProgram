@@ -7,6 +7,9 @@
     using System.Linq;
     using static HelperMethods.ExpenseHelper;
 
+    /// <summary>
+    /// Class for calculating expenses and incomes.
+    /// </summary>
     public class BudgetCalculator
     {
         /// <summary>

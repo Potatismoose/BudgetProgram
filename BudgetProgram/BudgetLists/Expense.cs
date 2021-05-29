@@ -4,6 +4,9 @@
     using System.Collections.Generic;
     using System.Text;
 
+    /// <summary>
+    /// Expense class contains dictionary with expenses
+    /// </summary>
     public class Expense : ILogable
     {
         /// <summary>

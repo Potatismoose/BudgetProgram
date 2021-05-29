@@ -7,22 +7,27 @@
     using System.IO;
     using System.Text;
 
+    /// <summary>
+    /// A logger class containing methods for logging errors to file and creating a reportfile on users desktop.
+    /// </summary>
     public static class Logger
     {
         /// <summary>
-        /// Sets some values needed for creating the report.
+        /// Sets some values needed for creating the report and showing it correctly in the file.
         /// </summary>
         private const int Percentage = 100;
         private const int PaddingForReportFile = 30;
         private const int PaddingForReportFileError = 4;
+
+        //Path to files
         readonly private static string ErrorlogPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\errorlog {DateTime.Now.ToShortDateString()}.txt";
         readonly private static string ReportPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\report.txt";
 
         /// <summary>
         /// Logs error to reportfile and error file.
         /// </summary>
-        /// <param name="expenseOrIncome"></param>
-        /// <param name="keyValuePair"></param>
+        /// <param name="expenseOrIncome">Takes an interface of income or expense</param>
+        /// <param name="keyValuePair">The specific keyValuePair that should be logged</param>
         public static void LogError(ILogable expenseOrIncome, KeyValuePair<string, decimal> keyValuePair)
         {
             File.AppendAllText(ErrorlogPath, expenseOrIncome.GetErrorMessageForLogMethod(keyValuePair));
@@ -33,8 +38,7 @@
         /// <summary>
         /// Logs null error to report and error file.
         /// </summary>
-        /// <param name="expenseOrIncome"></param>
-        /// <param name="keyValuePair"></param>
+        /// <param name="expenseOrIncome">Takes an interface of income or expense</param>
         public static void LogNullError(ILogable expenseOrIncome)
         {
             File.AppendAllText(ErrorlogPath, expenseOrIncome.GetErrorMessageForNull());
@@ -86,7 +90,7 @@
         /// <summary>
         /// Logs the balance to logfile after all expenses are deducted.
         /// </summary>
-        /// <param name="balance"></param>
+        /// <param name="balance">Takes a decimal value as balance and logs it as final balance in the report</param>
         public static void LogBalance(decimal balance)
         {
             StringBuilder sb = new StringBuilder();
@@ -98,12 +102,12 @@
         /// <summary>
         /// Logs the total sum of expenses to logfile when everything is payed.
         /// </summary>
-        /// <param name="balance"></param>
-        internal static void LogTotal(decimal balance)
+        /// <param name="totalExpenses">Takes a decimal value as total expenses</param>
+        internal static void LogTotal(decimal totalExpenses)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("\r\nTotalt: ")
-                .AppendFormat("{0:C}\r\n", balance);
+                .AppendFormat("{0:C}\r\n", totalExpenses);
 
             File.AppendAllText(ReportPath, sb.ToString());
         }

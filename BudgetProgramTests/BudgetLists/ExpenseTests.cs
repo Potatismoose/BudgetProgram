@@ -26,7 +26,7 @@
         }
 
         /// <summary>
-        /// 
+        /// Testing so the Method correctly returns a string containing the expected sum, the name of the expense and that the string contains "Felmeddelande"
         /// </summary>
         [Test()]
         [SetCulture("sv-SE")]

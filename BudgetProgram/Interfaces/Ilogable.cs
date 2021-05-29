@@ -2,6 +2,9 @@
 
 namespace BudgetProgram.Interfaces
 {
+    /// <summary>
+    /// Interface class that is used for all expenses and incomes.
+    /// </summary>
     public interface ILogable
     {
         /// <summary>
