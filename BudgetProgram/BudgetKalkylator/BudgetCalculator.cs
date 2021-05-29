@@ -20,10 +20,13 @@
         {
             if (expenses == null || expenses.HouseholdExpenses == null)
             {
-                expenses = new Expense();
-                expenses.HouseholdExpenses = new Dictionary<string, decimal>();
+                expenses = new Expense
+                {
+                    HouseholdExpenses = new Dictionary<string, decimal>()
+                };
+
                 expenses.HouseholdExpenses.Add("Utgift", 0);
-                Logger.LogNullError(expenses, expenses.HouseholdExpenses.First());
+                Logger.LogNullError(expenses);
                 return balance;
             }
 
@@ -36,7 +39,6 @@
             {
                 Logger.LogError(expenses as ILogable, cost);
                 expenses.HouseholdExpenses.Remove(cost.Key);
-
             }
 
             foreach (var expense in expenses.HouseholdExpenses)
@@ -68,10 +70,13 @@
             decimal balance = 0;
             if (incomes == null || incomes.HouseholdIncomes == null)
             {
-                incomes = new Income();
-                incomes.HouseholdIncomes = new Dictionary<string, decimal>();
+                incomes = new Income
+                {
+                    HouseholdIncomes = new Dictionary<string, decimal>()
+                };
+
                 incomes.HouseholdIncomes.Add("Inkomst", 0);
-                Logger.LogNullError(incomes, incomes.HouseholdIncomes.First());
+                Logger.LogNullError(incomes);
                 return balance;
             }
 

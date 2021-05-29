@@ -35,7 +35,7 @@
         /// </summary>
         /// <param name="expenseOrIncome"></param>
         /// <param name="keyValuePair"></param>
-        public static void LogNullError(ILogable expenseOrIncome, KeyValuePair<string, decimal> keyValuePair)
+        public static void LogNullError(ILogable expenseOrIncome)
         {
             File.AppendAllText(ErrorlogPath, expenseOrIncome.GetErrorMessageForNull());
             var stringLength = expenseOrIncome.GetErrorMessageForNull().Length;

@@ -55,8 +55,8 @@
         {
             //Arrange
             var percentageExpense = new PercentageExpense();
-            var expected = "\tFelmeddelande";
-            var expected2 = "ej specificerad";
+            const string expected = "\tFelmeddelande";
+            const string expected2 = "ej specificerad";
             //Act
             var actual = percentageExpense.GetErrorMessageForNull();
             //Assert

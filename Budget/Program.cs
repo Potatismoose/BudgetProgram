@@ -1,18 +1,15 @@
-﻿
-
-namespace Budget
+﻿namespace Budget
 {
-    using System;
-    using System.Collections.Generic;
     using BudgetProgram.BudgetKalkylator;
     using BudgetProgram.BudgetLists;
-    class Program
+    using System.Collections.Generic;
+    public static class Program
     {
         /// <summary>
-        /// ToDo: Skriv kommentaren
+        /// Runs the program to create and check a report.
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)
+        public static void Main()
         {
             BudgetCalculator bc = new();
 
@@ -35,7 +32,6 @@ namespace Budget
                     { "Barnbidrag", 1250 },
                     { "Gåva", 549 },
                     { "Gåva2", -1500 }
-
                 }
             };
 

@@ -3,13 +3,16 @@
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Class for calculating expenses
+    /// </summary>
     public class ExpenseHelper
     {
         /// <summary>
-        /// ToDo: Skriv kommentaren
+        /// Calculate all expenses
         /// </summary>
-        /// <param name="expenses"></param>
-        /// <returns></returns>
+        /// <param name="expenses">Takes a dictionary of expenses</param>
+        /// <returns>Returns the total sum of expenses</returns>
         public decimal TotalExpences(Dictionary<string, decimal> expenses)
         {
             decimal total = 0;
@@ -70,6 +73,5 @@
         {
             return Math.Abs(totalProcentage) + Math.Abs(value) <= 1;
         }
-
     }
 }

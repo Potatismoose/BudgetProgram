@@ -35,7 +35,7 @@
             //Arrange
             var expenses = new Expense();
             var keyValuePair = _dictionary.First();
-            var expectedSum = "5\u00A0005,00 kr";
+            const string expectedSum = "5\u00A0005,00 kr";
             //Act
             var actual = expenses.GetErrorMessageForLogMethod(keyValuePair);
             //Assert
@@ -53,8 +53,8 @@
         {
             //Arrange
             var expenses = new Expense();
-            var expected = "Felmeddelande";
-            var expected2 = "ej specificerad";
+            const string expected = "Felmeddelande";
+            const string expected2 = "ej specificerad";
             //Act
             var actual = expenses.GetErrorMessageForNull();
             //Assert
