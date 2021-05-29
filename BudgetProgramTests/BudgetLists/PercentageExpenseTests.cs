@@ -55,7 +55,7 @@
         {
             //Arrange
             var percentageExpense = new PercentageExpense();
-            var expected = "Felmeddelande";
+            var expected = "\tFelmeddelande";
             var expected2 = "ej specificerad";
             //Act
             var actual = percentageExpense.GetErrorMessageForNULL();
