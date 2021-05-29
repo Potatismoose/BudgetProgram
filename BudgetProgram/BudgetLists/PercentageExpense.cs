@@ -14,11 +14,7 @@
         {
             Name = "Procentuella utgiften";
         }
-        /// <summary>
-        /// ToDo: Skriv kommentaren
-        /// </summary>
-        /// <param name="expenses"></param>
-        /// <returns></returns>
+
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expenses)
         {
             var sb = new StringBuilder();
@@ -31,10 +27,7 @@
 
             return sb.ToString();
         }
-        /// <summary>
-        /// ToDo: Skriv kommentaren
-        /// </summary>
-        /// <returns></returns>
+
         public string GetErrorMessageForNull()
         {
             StringBuilder sb = new StringBuilder();
