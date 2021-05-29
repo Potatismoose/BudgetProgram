@@ -35,7 +35,7 @@
             //Arrange
             var incomes = new Income();
             var keyValuePair = _dictionary.First();
-            var expectedSum = "6\u00A0050,00 kr";
+            const string expectedSum = "6\u00A0050,00 kr";
             //Act
             var actual = incomes.GetErrorMessageForLogMethod(keyValuePair);
             //Assert
@@ -53,8 +53,8 @@
         {
             //Arrange
             var incomes = new Income();
-            var expected = "Felmeddelande";
-            var expected2 = "ej specificerad";
+            const string expected = "Felmeddelande";
+            const string expected2 = "ej specificerad";
             //Act
             var actual = incomes.GetErrorMessageForNull();
             //Assert

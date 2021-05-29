@@ -14,14 +14,14 @@
             Name = "Inkomsten";
         }
 
-        public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> income)
+        public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expenseOrIncome)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("\tFelmeddelande")
                 .Append("\tInkomsten ")
-                .Append(income.Key)
+                .Append(expenseOrIncome.Key)
                 .Append(" på ")
-                .AppendFormat("{0:C}", income.Value)
+                .AppendFormat("{0:C}", expenseOrIncome.Value)
                 .AppendLine(" har tagits bort då den var felaktigt formaterad.");
 
             return sb.ToString();
@@ -31,7 +31,7 @@
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("\tFelmeddelande")
-            .AppendLine($"\t{Name} är ej specificerad, och behandlas ej.\r\n");
+            .Append('\t').Append(Name).AppendLine(" är ej specificerad, och behandlas ej.\r\n");
 
             return sb.ToString();
         }

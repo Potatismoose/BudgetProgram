@@ -15,14 +15,14 @@
             Name = "Procentuella utgiften";
         }
 
-        public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expenses)
+        public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expenseOrIncome)
         {
             var sb = new StringBuilder();
             sb.AppendLine("\tFelmeddelande")
                 .Append("\tDen procentuella utgiften ")
-                .Append(expenses.Key)
+                .Append(expenseOrIncome.Key)
                 .Append(" på ")
-                .AppendFormat($"{expenses.Value * Percentage}%")
+                .AppendFormat($"{expenseOrIncome.Value * Percentage}%")
                 .AppendLine(" gick inte att dra då det saknas pengar.\r\n");
 
             return sb.ToString();
@@ -32,7 +32,7 @@
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("\tFelmeddelande")
-            .AppendLine($"\t{Name} är ej specificerad, och behandlas ej.\r\n");
+            .Append('\t').Append(Name).AppendLine(" är ej specificerad, och behandlas ej.\r\n");
 
             return sb.ToString();
         }

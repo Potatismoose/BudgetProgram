@@ -35,8 +35,10 @@
         public void CalculateIncomesTest_4_Negative_Income()
         {
             // Arrange 
-            var incomes = new Income();
-            incomes.HouseholdIncomes = new Dictionary<string, decimal>();
+            var incomes = new Income
+            {
+                HouseholdIncomes = new Dictionary<string, decimal>()
+            };
             incomes.HouseholdIncomes.Add("Lön", -1);
             var calc = new BudgetCalculator();
 
@@ -58,8 +60,10 @@
         public void CalculateIncomesTest_1(Decimal value, Decimal expected)
         {
             // Arrange 
-            var incomes = new Income();
-            incomes.HouseholdIncomes = new Dictionary<string, decimal>();
+            var incomes = new Income
+            {
+                HouseholdIncomes = new Dictionary<string, decimal>()
+            };
             incomes.HouseholdIncomes.Add("Lön1", value);
             var calc = new BudgetCalculator();
 
@@ -69,6 +73,5 @@
             // Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
-
     }
 }
