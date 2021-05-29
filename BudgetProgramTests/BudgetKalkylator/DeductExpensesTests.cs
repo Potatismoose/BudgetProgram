@@ -14,10 +14,10 @@
     [TestFixture()]
     public class DeductExpensesTests
     {
-        [TestCase(4500, 15500, TestName = "DeductExpensesTest_1_Values_ReturnsRest")]
-        [TestCase(8000, 12000, TestName = "DeductExpensesTest_2_Values_ReturnsRest")]
-        [TestCase(21000, 20000, TestName = "DeductExpensesTest_3_Values_ReturnsRest")]
-        public void DeductExpensesTest_01(Decimal value, Decimal expected)
+        [TestCase(4500, 15500, TestName = "DeductExpensesTest_1_Values_ReturnRest")]
+        [TestCase(8000, 12000, TestName = "DeductExpensesTest_2_Values_ReturnRest")]
+        [TestCase(21000, 20000, TestName = "DeductExpensesTest_3_Values_ReturnRest")]
+        public void DeductExpensesTest_1(Decimal value, Decimal expected)
         {
             // Arrange 
             var balance = 20000;
@@ -61,7 +61,7 @@
         /// If it is invalid 20000 is returned.
         /// </summary>
         [Test()]
-        public void DeductExpensesTest_05_If_Expenses_Is_Null_return_Balance()
+        public void DeductExpensesTest_5_ExpensesIsNull_ReturnBalance()
         {
             // Arrange 
             var balance = 20000;
@@ -101,7 +101,7 @@
         /// <param name="value"></param>
         /// <param name="expected"></param>
         [TestCase(21000, 0, TestName = "DeductExpensesTest_7_If_Expense_>_Balance_Return_0")]
-        public void DeductExpensesTest_07(Decimal value, Decimal expected)
+        public void DeductExpensesTest7(Decimal value, Decimal expected)
         {
             // Arrange 
             var balance = 0;
