@@ -13,7 +13,7 @@
         /// </summary>
         /// <param name="expenses">Takes a dictionary of expenses</param>
         /// <returns>Returns the total sum of expenses</returns>
-        public decimal TotalExpences(Dictionary<string, decimal> expenses)
+        public decimal TotalExpenses(Dictionary<string, decimal> expenses)
         {
             decimal total = 0;
             if (expenses == null)
