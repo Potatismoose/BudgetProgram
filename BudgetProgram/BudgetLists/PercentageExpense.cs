@@ -6,15 +6,23 @@
 
     public class PercentageExpense : ILogable
     {
+        /// <summary>
+        /// Property for Name that contains percentage expenses.
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        ///Property for dictionary of all expenses.
+        /// </summary>
         public Dictionary<string, decimal> HouseholdPercentageExpenses { get; set; }
         private const int Percentage = 100;
-
+        /// <summary>
+        /// Construktor that sets the property name to Procentuella utgiften.
+        /// </summary>
         public PercentageExpense()
         {
             Name = "Procentuella utgiften";
         }
-
+        // View interface for comments.
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expenseOrIncome)
         {
             var sb = new StringBuilder();
@@ -27,7 +35,7 @@
 
             return sb.ToString();
         }
-
+        // View interface for comments.
         public string GetErrorMessageForNull()
         {
             StringBuilder sb = new StringBuilder();

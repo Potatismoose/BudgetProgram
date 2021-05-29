@@ -6,14 +6,22 @@
 
     public class Expense : ILogable
     {
+        /// <summary>
+        /// Property for Name that contains expenses.
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        ///Property for dictionary of all expenses.
+        /// </summary>
         public Dictionary<string, decimal> HouseholdExpenses { get; set; }
-
+        /// <summary>
+        /// Construktor that sets the property name to Utgiften.
+        /// </summary>
         public Expense()
         {
             Name = "Utgiften";
         }
-
+        // View interface for comments.
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expenseOrIncome)
         {
             StringBuilder sb = new StringBuilder();
@@ -26,7 +34,7 @@
 
             return sb.ToString();
         }
-
+        // View interface for comments.
         public string GetErrorMessageForNull()
         {
             StringBuilder sb = new StringBuilder();

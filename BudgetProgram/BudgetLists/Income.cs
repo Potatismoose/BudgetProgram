@@ -6,14 +6,22 @@
 
     public class Income : ILogable
     {
+        /// <summary>
+        /// Property for Name that contains incomes.
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        ///Property for dictionary of all incomes.
+        /// </summary>
         public Dictionary<string, decimal> HouseholdIncomes { get; set; }
-
+        /// <summary>
+        /// Construktor that sets the property name to Inkomsten.
+        /// </summary>
         public Income()
         {
             Name = "Inkomsten";
         }
-
+        // View interface for comments.
         public string GetErrorMessageForLogMethod(KeyValuePair<string, decimal> expenseOrIncome)
         {
             StringBuilder sb = new StringBuilder();
@@ -26,7 +34,7 @@
 
             return sb.ToString();
         }
-
+        // View interface for comments.
         public string GetErrorMessageForNull()
         {
             StringBuilder sb = new StringBuilder();
